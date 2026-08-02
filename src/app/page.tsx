@@ -3,6 +3,7 @@ import { GuvenSeridi } from "@/components/GuvenSeridi";
 import { Hero } from "@/components/Hero";
 import { PaketIzgarasi } from "@/components/PaketIzgarasi";
 import { RandevuAnlatimi } from "@/components/RandevuAnlatimi";
+import { RandevuFormu } from "@/components/RandevuFormu";
 import { Reveal } from "@/components/Reveal";
 import { SofraTeaser } from "@/components/SofraTeaser";
 import { YaparimYapmam } from "@/components/YaparimYapmam";
@@ -74,20 +75,7 @@ export default function Anasayfa() {
           </Reveal>
 
           <Reveal gecikme={80}>
-            <div className="border border-line bg-paper px-[clamp(20px,3vw,36px)] py-[clamp(28px,3.5vw,44px)]">
-              <p className="font-mono text-label tracking-[0.18em] text-sea-700 uppercase">
-                Form
-              </p>
-              <p className="mt-4 max-w-[42ch] text-lede text-muted">
-                Ad, telefon ve isterseniz kısa bir not. Sağlık bilgisi
-                istenmez.
-              </p>
-              <div className="mt-8">
-                <ButtonLink href="/randevu" ton="birincil">
-                  Randevu formuna git
-                </ButtonLink>
-              </div>
-            </div>
+            <RandevuFormu />
           </Reveal>
         </div>
       </Section>
