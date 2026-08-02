@@ -9,6 +9,13 @@ const nextConfig: NextConfig = {
   },
 };
 
-const withMDX = createMDX({});
+const withMDX = createMDX({
+  options: {
+    // Turbopack eklenti adlarını dizge olarak ister; fonksiyon geçilemiyor.
+    // remark-frontmatter, YAML bloğunu ayrıştırıp çıktıdan çıkarır — künye
+    // bilgisi ayrıca gray-matter ile lib/yazilar.ts içinde okunur.
+    remarkPlugins: ["remark-frontmatter", "remark-gfm"],
+  },
+});
 
 export default withMDX(nextConfig);
