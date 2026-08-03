@@ -1,9 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
-import { ANA_MENU, SITE, TAM_AD } from "@/content/site";
+import { ANA_MENU, SITE, TAM_AD, yerTutucuMu } from "@/content/site";
 
 export function Header() {
   const [acik, setAcik] = useState(false);
@@ -24,15 +25,27 @@ export function Header() {
       <div className="konteyner flex h-[66px] items-center justify-between gap-4">
         <Link
           href="/"
-          className="flex shrink-0 items-baseline gap-2"
+          className="flex shrink-0 items-center gap-2.5"
           aria-label={`${TAM_AD} — anasayfa`}
         >
-          <span className="font-display text-[19px] leading-none font-medium text-sea-900">
+          {/* Bağlantının kendi aria-label'ı var; logo süsleyicidir, alt boş. */}
+          <Image
+            src="/logo-amblem.png"
+            alt=""
+            width={512}
+            height={512}
+            priority
+            sizes="(min-width: 640px) 36px, 28px"
+            className="h-7 w-7 shrink-0 object-contain sm:h-9 sm:w-9"
+          />
+          <span className="font-display text-[16px] leading-none font-medium text-sea-900 sm:text-[19px]">
             {SITE.unvan} {SITE.ad}
           </span>
-          <span className="hidden font-mono text-label tracking-[0.18em] text-muted uppercase sm:inline">
-            {SITE.sehir}
-          </span>
+          {yerTutucuMu(SITE.sehir) ? null : (
+            <span className="hidden font-mono text-label tracking-[0.18em] text-muted uppercase sm:inline">
+              {SITE.sehir}
+            </span>
+          )}
         </Link>
 
         <nav
@@ -80,7 +93,10 @@ export function Header() {
             <span className="block h-px w-full bg-sea-900" />
             <span className="block h-px w-full bg-sea-900" />
           </span>
-          {acik ? "Kapat" : "Menü"}
+          {/* 320px'te yazı gizlenir ama butonun erişilebilir adı korunur. */}
+          <span className="sr-only sm:not-sr-only">
+            {acik ? "Kapat" : "Menü"}
+          </span>
         </button>
       </div>
 
