@@ -128,10 +128,14 @@ export async function randevuGonder(
   // 4) Kayıt
   const supabase = supabaseSunucu();
   if (!supabase) {
+    // Ziyaretçiye altyapı adı gösterilmez; asıl sebep sunucu günlüğüne yazılır.
+    console.error(
+      "[randevu] SUPABASE_URL veya SUPABASE_SERVICE_ROLE_KEY tanımlı değil; talep kaydedilemedi.",
+    );
     return {
       durum: "hata",
       genelMesaj:
-        "Form şu anda kayıt yapamıyor: sunucuda Supabase ayarları eksik. Lütfen telefon veya WhatsApp ile ulaşın.",
+        "Form şu anda talep alamıyor. Lütfen telefon veya WhatsApp ile ulaşın.",
       degerler,
     };
   }
@@ -151,9 +155,12 @@ export async function randevuGonder(
   });
 
   if (error) {
+    // Veritabanı hatasının ayrıntısı ziyaretçiye değil, sunucu günlüğüne gider.
+    console.error("[randevu] Supabase insert hatası:", error.message);
     return {
       durum: "hata",
-      genelMesaj: `Talep kaydedilemedi (${error.message}). Lütfen telefon veya WhatsApp ile ulaşın.`,
+      genelMesaj:
+        "Talebiniz kaydedilemedi. Lütfen telefon veya WhatsApp ile ulaşın.",
       degerler,
     };
   }
