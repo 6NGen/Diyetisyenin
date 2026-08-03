@@ -11,6 +11,7 @@ import {
   TELEFON_HREF,
   WHATSAPP_HREF,
   telefonGoster,
+  yerTutucuMu,
 } from "@/content/site";
 
 export const dynamic = "force-static";
@@ -59,12 +60,18 @@ export default function IletisimSayfasi() {
                   href: WHATSAPP_HREF,
                   harici: true,
                 },
-                {
-                  ad: "E-posta",
-                  deger: SITE.eposta,
-                  href: EPOSTA_HREF,
-                  harici: false,
-                },
+                // E-posta henüz girilmediyse satır hiç basılmaz; çalışmayan
+                // bir mailto bağlantısı yayımlamaktansa gizlemek doğru.
+                ...(yerTutucuMu(SITE.eposta)
+                  ? []
+                  : [
+                      {
+                        ad: "E-posta",
+                        deger: SITE.eposta as string,
+                        href: EPOSTA_HREF,
+                        harici: false,
+                      },
+                    ]),
                 {
                   ad: "Instagram",
                   deger: SITE.instagram.replace(/^https?:\/\//, ""),
@@ -93,12 +100,14 @@ export default function IletisimSayfasi() {
                 </div>
               ))}
 
-              <div className="grid gap-1 border-b border-line py-4 sm:grid-cols-[140px_1fr] sm:gap-6">
-                <dt className="font-mono text-label tracking-[0.18em] text-muted uppercase">
-                  Adres
-                </dt>
-                <dd className="text-ink">{SITE.adres}</dd>
-              </div>
+              {yerTutucuMu(SITE.adres) ? null : (
+                <div className="grid gap-1 border-b border-line py-4 sm:grid-cols-[140px_1fr] sm:gap-6">
+                  <dt className="font-mono text-label tracking-[0.18em] text-muted uppercase">
+                    Adres
+                  </dt>
+                  <dd className="text-ink">{SITE.adres}</dd>
+                </div>
+              )}
             </dl>
 
             <div className="mt-10">
@@ -160,16 +169,18 @@ export default function IletisimSayfasi() {
                   </p>
                 </div>
               )}
-              <div className="border-t border-line px-[clamp(16px,2.4vw,24px)] py-4">
-                <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${HARITA_SORGUSU}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-mono text-label tracking-[0.18em] text-sea-700 uppercase underline underline-offset-4"
-                >
-                  Yol tarifi al →
-                </a>
-              </div>
+              {yerTutucuMu(SITE.adres) ? null : (
+                <div className="border-t border-line px-[clamp(16px,2.4vw,24px)] py-4">
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${HARITA_SORGUSU}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono text-label tracking-[0.18em] text-sea-700 uppercase underline underline-offset-4"
+                  >
+                    Yol tarifi al →
+                  </a>
+                </div>
+              )}
             </div>
 
             <div className="mt-8 border border-line bg-sea-50 px-[clamp(20px,3vw,32px)] py-[clamp(20px,2.6vw,28px)]">

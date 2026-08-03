@@ -7,14 +7,16 @@
  */
 export const SITE = {
   unvan: "Dyt.",
-  ad: "[Ad Soyad]",
+  ad: "Esmanur Durna",
   meslek: "Beslenme ve Diyet Danışmanı",
   sehir: "[Şehir]",
-  telefon: "+900000000000",
-  whatsapp: "+900000000000",
-  eposta: "iletisim@ornek.com",
-  instagram: "https://instagram.com/kullanici",
-  adres: "[Mahalle, Cadde No, İlçe/Şehir]",
+  telefon: "+905050416334",
+  whatsapp: "+905050416334",
+  eposta: "[E-posta adresi]",
+  // Paylaşım bağlantısındaki ?igsh=... izleme parametresi kaldırıldı;
+  // kalıcı profil adresi bu.
+  instagram: "https://www.instagram.com/dyt_esmaa_nd",
+  adres: "[Adres]",
   calismaSaatleri: [
     { gun: "Pazartesi–Cuma", saat: "09:00–18:00" },
     { gun: "Cumartesi", saat: "10:00–14:00" },
@@ -24,6 +26,16 @@ export const SITE = {
   universite: "[Üniversite] Beslenme ve Diyetetik",
   koordinat: { lat: 0, lng: 0 },
 } as const;
+
+/**
+ * Henüz doldurulmamış alanları ayırt eder.
+ * Köşeli parantezle başlayan değerler yer tutucudur; bu değerler ne ziyaretçiye
+ * bağlantı olarak gösterilir ne de yapısal veriye (JSON-LD) yazılır — aksi hâlde
+ * site çalışmayan bir mailto veya sahte bir adres yayımlamış olurdu.
+ */
+export function yerTutucuMu(deger: string): boolean {
+  return deger.trim().startsWith("[");
+}
 
 /** Başlıklarda ve künyelerde kullanılan tam ad. */
 export const TAM_AD = `${SITE.unvan} ${SITE.ad}`;

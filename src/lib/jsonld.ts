@@ -1,4 +1,4 @@
-import { SITE, SITE_URL, TAM_AD } from "@/content/site";
+import { SITE, SITE_URL, TAM_AD, yerTutucuMu } from "@/content/site";
 import type { Paket } from "@/content/paketler";
 import type { SSSMaddesi } from "@/content/sss";
 
@@ -66,30 +66,46 @@ export function dietitianJsonLd(): Json {
     ];
   });
 
+  // Henüz doldurulmamış alanlar yapısal veriye YAZILMAZ. Yer tutucu bir adres
+  // veya e-posta, arama motorlarına yanlış bilgi vermek anlamına gelir.
+  const sehirVar = !yerTutucuMu(SITE.sehir);
+  const adresVar = !yerTutucuMu(SITE.adres);
+  const konumVar = SITE.koordinat.lat !== 0 || SITE.koordinat.lng !== 0;
+
   return {
     "@context": "https://schema.org",
     "@type": "Dietitian",
     "@id": `${SITE_URL}/#dietitian`,
     name: TAM_AD,
-    description: `${SITE.sehir} ve online beslenme danışmanlığı. Ölçüme dayalı, sürdürülebilir beslenme planı.`,
+    description: sehirVar
+      ? `${SITE.sehir} ve online beslenme danışmanlığı. Ölçüme dayalı, sürdürülebilir beslenme planı.`
+      : "Online beslenme danışmanlığı. Ölçüme dayalı, sürdürülebilir beslenme planı.",
     url: SITE_URL,
     telephone: SITE.telefon,
-    email: SITE.eposta,
+    ...(yerTutucuMu(SITE.eposta) ? {} : { email: SITE.eposta }),
     priceRange: "₺₺",
     image: `${SITE_URL}/opengraph-image`,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: SITE.adres,
-      addressLocality: SITE.sehir,
-      addressCountry: "TR",
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: SITE.koordinat.lat,
-      longitude: SITE.koordinat.lng,
-    },
+    ...(adresVar || sehirVar
+      ? {
+          address: {
+            "@type": "PostalAddress",
+            ...(adresVar ? { streetAddress: SITE.adres } : {}),
+            ...(sehirVar ? { addressLocality: SITE.sehir } : {}),
+            addressCountry: "TR",
+          },
+        }
+      : {}),
+    ...(konumVar
+      ? {
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: SITE.koordinat.lat,
+            longitude: SITE.koordinat.lng,
+          },
+        }
+      : {}),
     areaServed: [
-      { "@type": "City", name: SITE.sehir },
+      ...(sehirVar ? [{ "@type": "City", name: SITE.sehir }] : []),
       { "@type": "Country", name: "Türkiye" },
     ],
     availableLanguage: { "@type": "Language", name: "Turkish" },
@@ -120,7 +136,9 @@ export function serviceJsonLd(paket: Paket): Json {
     url: `${SITE_URL}/paketler/${paket.slug}`,
     provider: { "@id": `${SITE_URL}/#dietitian` },
     areaServed: [
-      { "@type": "City", name: SITE.sehir },
+      ...(yerTutucuMu(SITE.sehir)
+        ? []
+        : [{ "@type": "City", name: SITE.sehir }]),
       { "@type": "Country", name: "Türkiye" },
     ],
     offers: {

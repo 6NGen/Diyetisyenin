@@ -8,6 +8,7 @@ import {
   YASAL_IBARE,
   YASAL_MENU,
   telefonGoster,
+  yerTutucuMu,
 } from "@/content/site";
 
 export function Footer() {
@@ -22,10 +23,14 @@ export function Footer() {
               {SITE.unvan} {SITE.ad}
             </p>
             <p className="mt-2 text-small text-sea-300">{SITE.meslek}</p>
-            <p className="mt-4 text-small text-sea-300">{SITE.universite}</p>
-            <p className="mt-1 font-mono text-label tracking-[0.18em] text-sea-300 uppercase">
-              Diploma tescil no: {SITE.diplomaTescilNo}
-            </p>
+            {yerTutucuMu(SITE.universite) ? null : (
+              <p className="mt-4 text-small text-sea-300">{SITE.universite}</p>
+            )}
+            {yerTutucuMu(SITE.diplomaTescilNo) ? null : (
+              <p className="mt-4 font-mono text-label tracking-[0.18em] text-sea-300 uppercase">
+                Diploma tescil no: {SITE.diplomaTescilNo}
+              </p>
+            )}
           </div>
 
           <nav aria-label="Alt menü">
@@ -77,14 +82,16 @@ export function Footer() {
                   WhatsApp
                 </a>
               </li>
-              <li>
-                <a
-                  href={EPOSTA_HREF}
-                  className="text-white/85 underline-offset-4 hover:underline"
-                >
-                  {SITE.eposta}
-                </a>
-              </li>
+              {yerTutucuMu(SITE.eposta) ? null : (
+                <li>
+                  <a
+                    href={EPOSTA_HREF}
+                    className="text-white/85 underline-offset-4 hover:underline"
+                  >
+                    {SITE.eposta}
+                  </a>
+                </li>
+              )}
               <li>
                 <a
                   href={SITE.instagram}
@@ -95,7 +102,9 @@ export function Footer() {
                   Instagram
                 </a>
               </li>
-              <li className="pt-2 text-sea-300">{SITE.adres}</li>
+              {yerTutucuMu(SITE.adres) ? null : (
+                <li className="pt-2 text-sea-300">{SITE.adres}</li>
+              )}
             </ul>
           </div>
 
