@@ -168,9 +168,12 @@ export default function YontemSayfasi() {
               Bu yöntemin size uyup uymadığını konuşmak için 15 dakikalık
               ücretsiz ön görüşme yeterli.
             </p>
-            <div className="mt-7">
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/randevu" ton="birincil">
                 Ücretsiz ön görüşme
+              </ButtonLink>
+              <ButtonLink href="/araclar" ton="ikincil">
+                Kendi rakamınızı hesaplayın
               </ButtonLink>
             </div>
           </div>

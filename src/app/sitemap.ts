@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { ARACLAR } from "@/content/araclar";
 import { PAKETLER } from "@/content/paketler";
 import { SITE_URL } from "@/content/site";
 import { tumYazilar } from "@/lib/yazilar";
@@ -17,6 +18,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { yol: "/randevu", oncelik: 0.9, siklik: "monthly" },
     { yol: "/paketler", oncelik: 0.9, siklik: "monthly" },
     { yol: "/yontem", oncelik: 0.8, siklik: "monthly" },
+    { yol: "/araclar", oncelik: 0.8, siklik: "monthly" },
+    { yol: "/ramazan", oncelik: 0.7, siklik: "yearly" },
     { yol: "/sunnet-uzere-sofra", oncelik: 0.8, siklik: "yearly" },
     { yol: "/hakkimda", oncelik: 0.7, siklik: "yearly" },
     { yol: "/sss", oncelik: 0.7, siklik: "monthly" },
@@ -34,6 +37,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: guncelleme,
       changeFrequency: sayfa.siklik,
       priority: sayfa.oncelik,
+    })),
+    ...ARACLAR.map((arac) => ({
+      url: `${SITE_URL}/araclar/${arac.slug}`,
+      lastModified: guncelleme,
+      changeFrequency: "yearly" as const,
+      priority: 0.7,
     })),
     ...PAKETLER.map((paket) => ({
       url: `${SITE_URL}/paketler/${paket.slug}`,

@@ -1,6 +1,5 @@
 import { SITE, SITE_URL, TAM_AD, yerTutucuMu } from "@/content/site";
 import type { Paket } from "@/content/paketler";
-import type { SSSMaddesi } from "@/content/sss";
 
 type Json = Record<string, unknown>;
 
@@ -114,7 +113,10 @@ export function dietitianJsonLd(): Json {
   };
 }
 
-export function faqJsonLd(maddeler: readonly SSSMaddesi[]): Json {
+/** Yalnızca soru ve cevap kullanılır; kaynak SSS de olabilir, Ramazan da. */
+export function faqJsonLd(
+  maddeler: readonly { soru: string; cevap: string }[],
+): Json {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -149,6 +151,27 @@ export function serviceJsonLd(paket: Paket): Json {
       availability: "https://schema.org/InStock",
       category: paket.fiyatNotu,
     },
+  };
+}
+
+/** Hesaplama araçları için. Ücretsiz, tarayıcıda çalışan web uygulaması. */
+export function webUygulamasiJsonLd(arac: {
+  ad: string;
+  aciklama: string;
+  slug: string;
+}): Json {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: `${arac.ad} hesaplama`,
+    description: arac.aciklama,
+    url: `${SITE_URL}/araclar/${arac.slug}`,
+    applicationCategory: "HealthApplication",
+    operatingSystem: "Web",
+    inLanguage: "tr-TR",
+    isAccessibleForFree: true,
+    offers: { "@type": "Offer", price: 0, priceCurrency: "TRY" },
+    publisher: { "@id": `${SITE_URL}/#dietitian` },
   };
 }
 

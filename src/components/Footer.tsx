@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {
   ANA_MENU,
+  EK_MENU,
   EPOSTA_HREF,
   SITE,
   TELEFON_HREF,
@@ -39,6 +40,16 @@ export function Footer() {
             </p>
             <ul className="mt-4 space-y-2.5">
               {ANA_MENU.map((oge) => (
+                <li key={oge.href}>
+                  <Link
+                    href={oge.href}
+                    className="text-small text-white/85 underline-offset-4 hover:underline"
+                  >
+                    {oge.ad}
+                  </Link>
+                </li>
+              ))}
+              {EK_MENU.map((oge) => (
                 <li key={oge.href}>
                   <Link
                     href={oge.href}

@@ -94,11 +94,21 @@ export type MenuOgesi = { ad: string; href: string };
 export const ANA_MENU: readonly MenuOgesi[] = [
   { ad: "Hakkımda", href: "/hakkimda" },
   { ad: "Yöntem", href: "/yontem" },
+  { ad: "Araçlar", href: "/araclar" },
   { ad: "Paketler", href: "/paketler" },
   { ad: "Sofra", href: "/sunnet-uzere-sofra" },
   { ad: "Yazılar", href: "/yazilar" },
   { ad: "S.S.S.", href: "/sss" },
   { ad: "İletişim", href: "/iletisim" },
+] as const;
+
+/**
+ * Ana menüye sığmayan ama footer'da bulunması gereken sayfalar.
+ * Ramazan mevsimlik: yılın çoğunda menüde yer kaplaması doğru olmaz,
+ * ama arama motorundan ve footer'dan erişilebilir kalmalı.
+ */
+export const EK_MENU: readonly MenuOgesi[] = [
+  { ad: "Ramazan'da beslenme", href: "/ramazan" },
 ] as const;
 
 export const YASAL_MENU: readonly MenuOgesi[] = [

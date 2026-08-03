@@ -50,7 +50,7 @@ export function Header() {
 
         <nav
           aria-label="Ana menü"
-          className="hidden items-center gap-6 lg:flex"
+          className="hidden items-center gap-6 xl:flex"
         >
           {ANA_MENU.map((oge) => {
             const etkin =
@@ -83,7 +83,7 @@ export function Header() {
           onClick={() => setAcik((o) => !o)}
           aria-expanded={acik}
           aria-controls={menuId}
-          className="flex items-center gap-2 border border-line px-3 py-2 font-mono text-label tracking-[0.18em] text-sea-900 uppercase lg:hidden"
+          className="flex items-center gap-2 border border-line px-3 py-2 font-mono text-label tracking-[0.18em] text-sea-900 uppercase xl:hidden"
         >
           <span
             aria-hidden="true"
@@ -104,7 +104,7 @@ export function Header() {
         <nav
           id={menuId}
           aria-label="Mobil menü"
-          className="border-t border-line bg-white lg:hidden"
+          className="border-t border-line bg-white xl:hidden"
         >
           <div className="konteyner flex flex-col py-2">
             {ANA_MENU.map((oge) => (
