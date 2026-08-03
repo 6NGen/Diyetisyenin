@@ -1,5 +1,11 @@
-import { SITE } from "@/content/site";
-
+/**
+ * Sık sorulan sorular.
+ *
+ * İlk altı madde public/katalog.pdf s. 12'den ("Sık sorulanlar · Merak
+ * edilenler") birebir aktarılmıştır. Kalanlar siteye özgüdür ve katalogla
+ * çelişmez — randevu formu ve ön görüşme gibi yalnızca sitede karşılığı olan
+ * konuları açıklar.
+ */
 export type SSSMaddesi = {
   soru: string;
   cevap: string;
@@ -7,17 +13,56 @@ export type SSSMaddesi = {
 };
 
 export const SSS: readonly SSSMaddesi[] = [
+  // — Katalog s. 12 —
+  {
+    grup: "Online",
+    soru: "Online görüşme yüz yüze kadar verimli mi?",
+    cevap:
+      "Evet. Tek fark vücut analizi ölçümünün bende yapılamaması. Online danışanlar için evde yapılabilecek çevre ölçümü ve tartı protokolü veriyorum; isterseniz ilk ve son ölçüm için yüz yüze gelebilirsiniz.",
+  },
+  {
+    grup: "Süreç",
+    soru: "Randevumu değiştirebilir miyim?",
+    cevap:
+      "En az 24 saat önceden haber verirseniz ücretsiz erteleriz. Haber verilmeyen randevular kullanılmış sayılır. Hastalık gibi mazeretlerde esneklik gösteriyorum.",
+  },
+  {
+    grup: "Süreç",
+    soru: "Program bittikten sonra ne oluyor?",
+    cevap:
+      "Dönüşüm ve Klinik paketlerinde kapanış görüşmesinde kalıcılık planı yazıyoruz ve bir ay sonra ücretsiz takip görüşmesi yapıyoruz. Sonrasında dilerseniz tek seans ya da aylık takip şeklinde devam edebilirsiniz.",
+  },
+  {
+    grup: "Süreç",
+    soru: "Yemek yapmayı sevmiyorum, yine de olur mu?",
+    cevap:
+      "Olur. Pratik seçenekler, hazır ürün okuma rehberi ve dışarıda yeme stratejisi üzerine kurulu bir plan yaparız. Mutfağa girmeyi gerektirmeyen bir plan da mümkün.",
+  },
+  {
+    grup: "Sınırlar",
+    soru: "Verdiğim bilgiler nerede saklanıyor?",
+    cevap:
+      "Ölçüm, sağlık bilgisi ve fotoğraflarınız KVKK'nın özel nitelikli kişisel veri hükümlerine tabidir. Açık rızanız olmadan hiçbir yerde paylaşılmaz, işlenmez. Dilediğiniz zaman silinmesini talep edebilirsiniz.",
+  },
+  {
+    grup: "Ücret",
+    soru: "Ücret iadesi var mı?",
+    cevap:
+      "Program başlamadan önceki iptallerde tam iade yapılır. Başladıktan sonra, kullanılmamış görüşmeler oranında iade uygulanır. Detaylar sözleşmede yazılıdır.",
+  },
+
+  // — Siteye özgü —
   {
     grup: "Süreç",
     soru: "Ücretsiz ön görüşme nedir, ne kadar sürer?",
     cevap:
-      "15 dakikalık, ücretsiz ve karşılıklı bir tanışmadır. Neye ihtiyacınız olduğunu anlatırsınız, ben nasıl çalıştığımı anlatırım. Bu görüşmede plan verilmez, ölçüm alınmaz, tahlil yorumlanmaz. Amaç, birlikte çalışmanın size uygun olup olmadığına karar vermenizdir.",
+      "15 dakikalık, ücretsiz ve karşılıklı bir tanışmadır. Ne beklediğinizi anlatırsınız, ben de size uygun olanı söylerim — uygun olmadığını düşünürsem bunu da söylerim. Bu görüşmede plan verilmez, ölçüm alınmaz, tahlil yorumlanmaz.",
   },
   {
     grup: "Süreç",
     soru: "İlk görüşmede ne oluyor?",
     cevap:
-      "İlk görüşme 60 dakikadır. Beslenme öykünüz, öğün düzeniniz, uyku ve hareket alışkanlıklarınız konuşulur; antropometrik ölçümler alınır ve yüz yüze görüşmelerde vücut kompozisyonu analizi yapılır. Varsa hekiminizin istediği tahlil sonuçlarını beslenme açısından değerlendiririm. Görüşmenin ardından yazılı bir özet raporu size iletirim.",
+      "İlk görüşme 60 dakikadır. Beslenme öykünüz, hastalık ve ilaç geçmişiniz, uyku ve hareket düzeniniz konuşulur; antropometrik ölçüm ve vücut analizi yapılır. Ardından ölçümleri, hedefleri ve önerileri içeren bir PDF rapor iletirim.",
   },
   {
     grup: "Süreç",
@@ -26,34 +71,10 @@ export const SSS: readonly SSSMaddesi[] = [
       "Son altı ay içinde yapılmış tahlil sonuçlarınız, düzenli kullandığınız ilaç ve takviyelerin listesi ve varsa hekim raporunuz yeterli. Üç günlük besin tüketim kaydı tutabilirseniz görüşmeyi belirgin biçimde hızlandırır.",
   },
   {
-    grup: "Süreç",
-    soru: "Ne sıklıkla görüşüyoruz?",
-    cevap:
-      "Paketlere göre değişir. Denge paketinde haftada bir olmak üzere ayda dört, Dönüşüm ve Klinik paketlerinde üç ay boyunca haftada bir görüşürüz. Görüşme aralıkları sizin programınıza göre birlikte belirlenir.",
-  },
-  {
-    grup: "Online",
-    soru: "Online görüşme yüz yüze görüşmeden farklı mı?",
-    cevap:
-      "İçerik olarak aynıdır. Tek fark, biyoelektrik impedans ölçümünün yalnızca yüz yüze yapılabilmesidir. Online çalışırken ölçümler için evde uygulanabilir bir yöntem üzerinde anlaşırız; boy, ağırlık ve çevre ölçümleri sizin tarafınızdan alınır.",
-  },
-  {
-    grup: "Online",
-    soru: "Türkiye dışından çalışabilir miyim?",
-    cevap:
-      "Evet. Görüşmeler görüntülü yapılır, saat farkı gözetilerek planlanır. Öğün planı bulunduğunuz ülkede ulaşabildiğiniz besinlere göre kurulur.",
-  },
-  {
     grup: "Ücret",
     soru: "Ödeme nasıl yapılıyor?",
     cevap:
-      "Paket ücreti, ilk görüşmeden önce banka havalesi veya EFT ile ödenir. Üç aylık paketlerde talep hâlinde ödeme aylık olarak bölünebilir. Ödeme sonrası fatura düzenlenir.",
-  },
-  {
-    grup: "Ücret",
-    soru: "Paketi yarıda bırakırsam ne oluyor?",
-    cevap:
-      "Kullanılmamış görüşmelerin ücreti iade edilir. Ayrıntılar İptal ve İade sayfasında yazılıdır. Randevunuzu en az 24 saat önce bildirerek ücretsiz erteleyebilirsiniz.",
+      "Ödeme peşin veya taksitli yapılabilir. Online ve yüz yüze görüşme aynı fiyattadır. Başlanmış bir programın fiyatı süre boyunca değişmez.",
   },
   {
     grup: "Ücret",
@@ -63,44 +84,28 @@ export const SSS: readonly SSSMaddesi[] = [
   },
   {
     grup: "Sınırlar",
-    soru: "Bana bir diyet listesi verecek misiniz?",
-    cevap:
-      "Tek başına bir kâğıt liste vermem. Enerji ve besin ögesi hedefleri hesaplanır, bu hedefler sizin mutfağınıza ve gününüze göre öğün planına dönüştürülür ve takip görüşmelerinde gerçek hayata göre revize edilir. Değişim listeleri sayesinde plan sabit bir menü değil, esnek bir çerçevedir.",
-  },
-  {
-    grup: "Sınırlar",
     soru: "Ne kadar sürede sonuç alırım?",
     cevap:
-      "Süre ve sonuç sözü vermem. Beslenme müdahalesine verilen yanıt kişiden kişiye değişir; yaş, hormonal durum, uyku, hareket düzeyi ve kullanılan ilaçlar sonucu etkiler. Ölçülebilir hedefler koyarız ve ilerlemeyi birlikte izleriz.",
+      "Kaç kilo verileceğine dair taahhüt bilimsel olarak da hukuken de mümkün değildir. Güvenli değişim hızı haftada vücut ağırlığının %0,5–1'i kadardır; daha hızlısı kas kaybı ve geri alma riskini büyütür. Ölçülebilir hedefler koyar, ilerlemeyi birlikte izleriz.",
   },
   {
     grup: "Sınırlar",
     soru: "Takviye veya ürün satıyor musunuz?",
     cevap:
-      "Hayır. Bu sitede ve görüşmelerde hiçbir ürün, takviye, çay veya detoks programı satışı yoktur. Bir takviyeye ihtiyaç olduğunu düşünürsem gerekçesiyle birlikte konuşur, kararı hekiminizle vermenizi öneririm.",
+      "Hayır. Detoks, çay, hap, damla veya “yağ yakıcı” ürün satmam; bu sitede de hiçbir ürün satışı yoktur. Bir takviyeye ihtiyaç olduğunu düşünürsem gerekçesiyle birlikte konuşur, kararı hekiminizle vermenizi öneririm.",
   },
   {
     grup: "Sınırlar",
     soru: "Hastalığıma teşhis koyabilir misiniz?",
     cevap:
-      "Hayır. Teşhis koymak ve tedavi kararı vermek hekimin yetkisindedir. Ölçümlerde veya tahlillerde dikkat çeken bir bulgu olduğunda sizi hekime yönlendiririm. Klinik paketinde beslenme planı, hekiminizin tanısı ve yönlendirmesi doğrultusunda kurulur.",
+      "Hayır. Hastalık teşhisi ve ilaç düzenlemesi hekimin yetkisindedir. Şüphe hâlinde sizi yönlendirir, hekimle iş birliği içinde çalışırım. Klinik pakette beslenme planı, hekiminizin tanısı ve takibi doğrultusunda kurulur.",
   },
   {
     grup: "Sınırlar",
     soru: "Randevu formunda neden sağlık bilgisi sorulmuyor?",
     cevap:
-      "Sağlık verisi, kişisel verilerin korunması mevzuatında özel nitelikli veri sayılır. Bu yüzden form üzerinden hastalık, ilaç veya ölçüm bilgisi toplamıyorum. Bu bilgiler yalnızca görüşme sırasında, sizin onayınızla ve gerektiği kadar kayda alınır.",
-  },
-  {
-    grup: "Süreç",
-    soru: "Nerede görüşüyoruz?",
-    cevap: `Yüz yüze görüşmeler ${SITE.sehir} adresimde yapılır; adres ve ulaşım bilgisi İletişim sayfasındadır. Dilerseniz tüm süreç online yürütülebilir.`,
+      "Sağlık verisi, kişisel verilerin korunması mevzuatında özel nitelikli veri sayılır. Bu yüzden form üzerinden hastalık, ilaç veya ölçüm bilgisi toplamıyorum. Bu bilgiler yalnızca görüşme sırasında, açık rızanızla ve gerektiği kadar kayda alınır.",
   },
 ];
 
-export const SSS_GRUPLARI = [
-  "Süreç",
-  "Ücret",
-  "Online",
-  "Sınırlar",
-] as const;
+export const SSS_GRUPLARI = ["Süreç", "Ücret", "Online", "Sınırlar"] as const;

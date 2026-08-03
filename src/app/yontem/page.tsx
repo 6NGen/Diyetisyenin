@@ -5,7 +5,13 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Baslik, Lede } from "@/components/ui/Baslik";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Section } from "@/components/ui/Section";
-import { ADIME, KAYNAKLAR, VERI_BLOKLARI } from "@/content/yontem";
+import {
+  ADIME,
+  ADIME_GIRIS,
+  KAYNAKLAR,
+  VERI_BLOKLARI,
+  VERI_BLOKLARI_GIRIS,
+} from "@/content/yontem";
 
 export const dynamic = "force-static";
 
@@ -22,7 +28,7 @@ export default function YontemSayfasi() {
       <SayfaBasligi
         eyebrow="Yöntem · ADIME"
         baslik="Nasıl çalıştığım, adım adım."
-        lede="Beslenme danışmanlığının uluslararası çerçevesi ADIME'dir. Aşağıda hem bu beş adımı hem de her adımda kullandığım ölçüm ve hesaplama yöntemlerini, formülleriyle birlikte bulacaksınız. Bir hesabın nereden geldiğini bilmiyorsanız o hesaba güvenmek zorunda değilsiniz."
+        lede={`${ADIME_GIRIS} Aşağıda hem bu beş adımı hem de her adımda kullandığım ölçüm ve hesaplama yöntemlerini formülleriyle birlikte bulacaksınız.`}
       />
 
       <Section zemin="beyaz">
@@ -66,12 +72,7 @@ export default function YontemSayfasi() {
           <Baslik seviye={2} className="mt-4">
             Neyi, nasıl ölçüyorum.
           </Baslik>
-          <Lede className="mt-5">
-            Aşağıdaki altı blok, bir planın arkasındaki bütün hesabı içerir.
-            Formüller olduğu gibi yazılıdır; isterseniz kendi rakamlarınızla
-            kontrol edebilirsiniz. Tahmin denklemleri başlangıç noktasıdır,
-            kesin sonuç değil — asıl ayar takip sırasında yapılır.
-          </Lede>
+          <Lede className="mt-5">{VERI_BLOKLARI_GIRIS}</Lede>
         </Reveal>
 
         <div className="mt-11 space-y-[clamp(28px,3.5vw,44px)]">

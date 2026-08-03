@@ -3,7 +3,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Baslik, Lede } from "@/components/ui/Baslik";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Section } from "@/components/ui/Section";
-import { ADIME } from "@/content/yontem";
+import { ADIME, ADIME_GIRIS } from "@/content/yontem";
 
 /** Anasayfadaki özet hâli. Tam anlatım /yontem sayfasında. */
 export function YontemAdimlari() {
@@ -14,11 +14,7 @@ export function YontemAdimlari() {
         <Baslik seviye={2} className="mt-4">
           Beş adım, hep aynı sırada.
         </Baslik>
-        <Lede className="mt-5">
-          Beslenme danışmanlığının uluslararası çerçevesi ADIME&apos;dir:
-          değerlendirme, beslenme tanısı, müdahale, izlem ve değerlendirme.
-          Sürecin her adımı yazılı, her hesabın kaynağı belli.
-        </Lede>
+        <Lede className="mt-5">{ADIME_GIRIS}</Lede>
       </Reveal>
 
       <ol className="izgara-cizgi mt-11 grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">

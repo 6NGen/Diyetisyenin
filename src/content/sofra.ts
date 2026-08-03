@@ -1,15 +1,11 @@
 /**
  * "Sünnet üzere sofra" bölümü — 14 madde.
  *
- * ⚠ KAYNAK DOĞRULAMA NOTU
- * Spesifikasyon bu maddelerin `diyetisyen-katalog.html` dosyasındaki `.adab-item`
- * bloklarından birebir aktarılmasını istiyor. O dosya bu depoda bulunmadığı için
- * aşağıdaki künyeler ve sıhhat notları, ilgili rivayetlerin yaygın olarak
- * kullanılan standart referanslarına göre yazıldı.
+ * KAYNAK: public/katalog.pdf, s. 9–10 ("İsteğe bağlı bölüm · Sofra âdâbı").
  *
- * YAYINA ALMADAN ÖNCE: her künye ve sıhhat notu katalogla birebir
- * karşılaştırılmalı, farklıysa katalogdaki hâliyle değiştirilmelidir.
- * Künyeler kısaltılmaz, "iyileştirilmez".
+ * Rivayet muhtevaları, "bugünkü karşılığı" yorumları, kaynak künyeleri ve
+ * sıhhat notları katalogdan BİREBİR aktarılmıştır. Künyeler kısaltılmaz,
+ * râvî bilgileri düşürülmez, sıhhat notları "iyileştirilmez".
  */
 
 export type SofraMaddesi = {
@@ -23,151 +19,151 @@ export type SofraMaddesi = {
   sihhat?: string;
 };
 
-export const SOFRA_UYARISI =
-  "Bu bölüm isteğe bağlıdır ve sitenin beslenme danışmanlığı hizmetinin bir parçası değildir. " +
-  "Hadis ilmi benim uzmanlık alanım değildir; künyeler kaynak eserlerden aktarılmıştır. " +
-  "Dinî hüküm için ehline başvurunuz. Buradaki hiçbir madde tıbbi tavsiye, teşhis veya tedavi yerine geçmez.";
+/** Katalog s. 9 — bölüm girişi. */
+export const SOFRA_GIRIS =
+  "Talep eden danışanlar için programa, Peygamber Efendimiz'in (s.a.v.) sofra âdâbından " +
+  "beslenen bir çerçeve ekliyorum. Aşağıdakiler tıbbi bir reçete değil; ölçü, şükür ve " +
+  "sadelik üzerine kurulu bir sofra kültürü. Yine de çoğunun bugünkü beslenme biliminde " +
+  "karşılığı olduğunu görmek dikkat çekici.";
 
+/** Katalog s. 9 — uyarı kutusu. */
+export const SOFRA_UYARISI =
+  "Bu bölüm isteğe bağlıdır ve hiçbir pakette zorunlu değildir. Rivayetler kaynaklarıyla " +
+  "ve mümkün olduğunca sıhhat durumuyla birlikte verilmiştir; hadis ilmi bu kataloğun " +
+  "uzmanlık alanı değildir, tafsilat için ehline başvurulmalıdır.";
+
+/** Katalog s. 10 — sayfa sonundaki zayıf rivayet notu. */
 export const SOFRA_ZAYIF_RIVAYET_NOTU =
-  "Sofra âdâbı etrafında halk arasında dolaşan rivayetlerin bir kısmı zayıf, bir kısmı ise uydurmadır. " +
-  "Bu sayfaya yalnızca sıhhati kaynak eserlerde açıkça belirtilen rivayetler alınmıştır. " +
-  "Sıhhat notu bulunmayan bir rivayetle karşılaştığınızda, onu bir sağlık önerisine dönüştürmeden önce " +
-  "hem hadis ilmine hem de güncel beslenme bilgisine ayrı ayrı başvurmak gerekir.";
+  "“Biz acıkmadıkça yemeyen, yediğimizde de doymayan bir topluluğuz” sözü halk arasında " +
+  "çok yaygındır ancak muteber hadis kaynaklarında sahih bir isnadla yer almaz. Bu tür " +
+  "meşhur ama kaynağı zayıf sözleri, sahih rivayetlerden ayrı tutmayı tercih ediyorum.";
 
 export const SOFRA_MADDELERI: readonly SofraMaddesi[] = [
   {
-    baslik: "Yemeğe besmele ile başlamak",
+    baslik: "Üçte bir ölçüsü",
     metin:
-      "Yemeğe başlarken Allah'ın adının anılması, başlangıçta unutulursa hatırlandığı anda söylenmesi tavsiye edilmiştir.",
+      "Rivayette, insanoğlunun midesinden daha kötü bir kap doldurmadığı; kendisine yetecek birkaç lokmanın kâfi geldiği, mutlaka yiyecekse midesinin üçte birini yemeğe, üçte birini içeceğe, üçte birini nefese ayırması bildirilir.",
     bugunkuKarsiligi:
-      "Öğüne bilinçli bir duruşla başlamak, ilk lokmadan önce bir an durmak demek. Ayakta, telefon elde ve aceleyle başlanan öğünlerde tokluk sinyali geç fark edilir; kısa bir başlangıç ritüeli öğünü fark edilir kılar.",
-    kaynak: "Ebû Dâvûd, Et'ime 15 · Tirmizî, Et'ime 47",
+      "Porsiyon kontrolü ve doymadan sofradan kalkma. Tokluk sinyalinin beyne ulaşması yaklaşık 20 dakika sürer.",
+    kaynak:
+      "Tirmizî, Zühd 47 · İbn Mâce, Et'ime 50 · Ahmed b. Hanbel, Müsned, IV/132 (Mikdâm b. Ma'dîkerib'den)",
     sihhat: "Hasen–sahih",
   },
   {
-    baslik: "Sağ elle ve önünden yemek",
+    baslik: "Besmele, sağ el, önünden",
     metin:
-      "Sofrada sağ elin kullanılması ve kişinin kendi önünden yemesi öğütlenmiştir.",
+      "Küçük yaşta bir çocuğa sofrada verilen tavsiye üç maddeydi: Allah'ın adını anmak, sağ elle yemek ve kendi önünden yemek.",
     bugunkuKarsiligi:
-      "Ortak kaptan yemekte kendi tarafından almak, hem hijyen hem de porsiyon açısından işe yarar: tabağın her yerine uzanmak, yenen miktarın takibini imkânsız hâle getirir.",
-    kaynak: "Buhârî, Et'ime 2, 3 · Müslim, Eşribe 108",
+      "Yemeğe bilinçli başlamak. Öğüne bir duruş noktasıyla başlamak, otomatik ve dalgın yemeyi kesen en basit uygulamadır.",
+    kaynak: "Buhârî, Et'ime 2 · Müslim, Eşribe 108 (Ömer b. Ebû Seleme'den)",
     sihhat: "Sahih · müttefekun aleyh",
-  },
-  {
-    baslik: "Mideyi üçe ayırmak",
-    metin:
-      "Âdemoğlunun doldurduğu kapların en kötüsünün mide olduğu; kişiye belini doğrultacak birkaç lokmanın yeteceği, illâ yiyecekse midesinin üçte birini yemeğe, üçte birini içeceğe, üçte birini nefese ayırması gerektiği bildirilmiştir.",
-    bugunkuKarsiligi:
-      "Bu sitenin imza fikri buradan geliyor. Bugünkü karşılığı basit: tabağı ağzına kadar doldurmamak, öğünü tam doymadan bitirmek ve tokluk sinyalinin yerleşmesi için zaman bırakmak. Mide, tokluğu ancak öğün başladıktan bir süre sonra bildirir.",
-    kaynak: "Tirmizî, Zühd 47 · İbn Mâce, Et'ime 50",
-    sihhat: "Hasen–sahih",
   },
   {
     baslik: "Yemeği kötülememek",
     metin:
-      "Peygamber'in hiçbir yemeği ayıplamadığı; canı çekerse yediği, çekmezse bıraktığı nakledilmiştir.",
+      "Rivayete göre Efendimiz hiçbir yemeği ayıplamadı; canı çekerse yer, çekmezse dokunmadan bırakırdı.",
     bugunkuKarsiligi:
-      "Besinleri \"iyi\" ve \"kötü\" diye ikiye ayırmak, beslenme danışmanlığında en sık karşılaştığım sorunlardan biri. Yasak listesi büyüdükçe uyum düşer, suçluluk artar. Bir besin öğün içindeki yeri ve miktarıyla değerlendirilir, kendi başına yargılanmaz.",
-    kaynak: "Buhârî, Et'ime 21 · Müslim, Eşribe 187",
+      "Besinleri “yasak/serbest” diye ikiye ayırmamak. Yiyecekleri suçla etiketlemek, kısıtlama–tıkınma döngüsünü besleyen en yaygın hatalardan biridir.",
+    kaynak: "Buhârî, Et'ime 21 · Müslim, Eşribe 187 (Ebû Hüreyre'den)",
     sihhat: "Sahih · müttefekun aleyh",
-  },
-  {
-    baslik: "Birlikte yemek",
-    metin:
-      "Yemeğin topluca yenmesi ve üzerine Allah'ın adının anılması hâlinde bereketleneceği bildirilmiştir.",
-    bugunkuKarsiligi:
-      "Yalnız ve ekran karşısında yenen öğünlerde hem süre kısalır hem de yenen miktar fark edilmez. Sofrayı paylaşmak öğünü yavaşlatır; yavaşlayan öğün daha iyi fark edilir.",
-    kaynak: "Ebû Dâvûd, Et'ime 14 · İbn Mâce, Et'ime 17",
-    sihhat: "Hasen",
-  },
-  {
-    baslik: "Yaslanarak yememek",
-    metin:
-      "Peygamber'in yaslanarak yemek yemediğini söylediği rivayet edilmiştir.",
-    bugunkuKarsiligi:
-      "Dik oturarak yemek, hem çiğnemeyi hem de yutmayı kolaylaştırır. Uzanarak veya iyice arkaya yaslanarak yemek, reflü şikâyeti olanlarda rahatsızlığı artırabilir.",
-    kaynak: "Buhârî, Et'ime 13 · Ebû Dâvûd, Et'ime 17",
-    sihhat: "Sahih",
   },
   {
     baslik: "Suyu üç nefeste içmek",
     metin:
-      "Suyun bir dikişte değil, ara vererek üç nefeste içildiği nakledilmiştir.",
+      "Suyun bir dikişte değil, üç nefeste içildiği; bunun daha kandırıcı ve rahat olduğu bildirilir.",
     bugunkuKarsiligi:
-      "Günlük sıvı alımının tamamını birkaç seferde içmek yerine güne yaymak, hem alımı kolaylaştırır hem de susuzluk hissinin açlıkla karışmasını azaltır. Öğün arasına yayılmış su, öğün sırasında içilen büyük miktardan daha rahat tolere edilir.",
-    kaynak: "Buhârî, Eşribe 26 · Müslim, Eşribe 123",
-    sihhat: "Sahih · müttefekun aleyh",
-  },
-  {
-    baslik: "Kabın içine solumamak",
-    metin:
-      "İçilen kabın içine solunmaması, sıcak olanın soğumasının beklenmesi tavsiye edilmiştir.",
-    bugunkuKarsiligi:
-      "Ortak kaba üflememek temel bir hijyen kuralıdır. Çok sıcak içeceklerin bekletilerek içilmesi de ağız ve yemek borusu mukozasını korur.",
-    kaynak: "Buhârî, Vudû' 18 · Tirmizî, Eşribe 15",
+      "Sıvıyı güne yayarak almak. Bir seferde çok su içmek yerine düzenli aralıklarla içmek daha iyi tolere edilir.",
+    kaynak: "Müslim, Eşribe 123 · Tirmizî, Eşribe 13 (Enes b. Mâlik'ten)",
     sihhat: "Sahih",
   },
   {
-    baslik: "Düşen lokmayı alıp temizleyerek yemek",
+    baslik: "Sıcak yemeği üflememek",
     metin:
-      "Lokma düştüğünde bulaşan şeyin temizlenip lokmanın yenmesi, şeytana bırakılmaması öğütlenmiştir.",
+      "İçeceğe üflenmesi hoş görülmemiş, yemeğin soğuması beklenmiştir.",
     bugunkuKarsiligi:
-      "Buradaki asıl mesele israfın önlenmesi. Bugün karşılığı, tabakta artan yemeği çöpe atmadan saklamak, porsiyonu baştan gerçekçi tutmak ve alışverişi tüketebileceğiniz kadar yapmaktır. Hijyen koşulları elbette gözetilir.",
-    kaynak: "Müslim, Eşribe 136 · Tirmizî, Et'ime 11",
-    sihhat: "Sahih",
-  },
-  {
-    baslik: "Yemekten sonra hamd etmek",
-    metin:
-      "Öğünün sonunda yiyeceği veren için hamd edilmesi tavsiye edilmiştir.",
-    bugunkuKarsiligi:
-      "Öğünü bir kapanışla bitirmek, \"bitti\" sinyalini netleştirir. Kapanışı olmayan öğünler kolayca uzar; masada oturmaya devam etmek, tokluğa rağmen atıştırmayı sürdürmenin en yaygın sebeplerinden biri.",
-    kaynak: "Tirmizî, Daavât 56 · Ebû Dâvûd, Et'ime 52",
+      "Çok sıcak içecek ve yemek tüketimi Dünya Sağlık Örgütü'nün ilgili değerlendirmesinde (IARC, 65 °C üzeri) yemek borusu için risk faktörü olarak ele alınmıştır.",
+    kaynak: "Tirmizî, Eşribe 15 · Ebû Dâvûd, Eşribe 20 · İbn Mâce, Et'ime 26",
     sihhat: "Hasen",
   },
   {
-    baslik: "Sofrayı paylaşmak, komşuyu gözetmek",
+    baslik: "Birlikte yemek",
     metin:
-      "Çorba pişirildiğinde suyunun çoğaltılıp komşuya ikram edilmesi öğütlenmiştir.",
+      "Yemeğin toplu yenmesi, dağınık yenmemesi tavsiye edilmiş; bereketin cemaatle olduğu bildirilmiştir.",
     bugunkuKarsiligi:
-      "Bir öğünü paylaşmak, o öğünü hem daha ölçülü hem de daha anlamlı kılar. Fazla pişen yemeği paylaşmak, aynı zamanda gıda israfına karşı en eski ve en pratik çözüm.",
-    kaynak: "Müslim, Birr 142 · Tirmizî, Et'ime 30",
+      "Aile sofrası. Ortak sofrada yemek yiyen çocuklarda beslenme kalitesinin daha iyi olduğu gösterilmiştir; ayrıca ekran karşısında yemeyi engeller.",
+    kaynak: "Ebû Dâvûd, Et'ime 14 · İbn Mâce, Et'ime 17",
+    sihhat: "Hasen",
+  },
+  {
+    baslik: "Zeytinyağı",
+    metin:
+      "Zeytinyağının yenmesi ve onunla yağlanılması tavsiye edilmiş, mübarek bir ağaçtan geldiği belirtilmiştir. Kur'ân'da da zeytin ağacına yemin edilir (Tîn 95/1) ve “mübarek” olarak anılır (Nûr 24/35).",
+    bugunkuKarsiligi:
+      "Akdeniz diyetinin temel yağı. Sızma zeytinyağı, tekli doymamış yağ ve polifenol içeriğiyle kardiyovasküler koruma açısından en çok çalışılmış yağdır.",
+    kaynak: "Tirmizî, Et'ime 43 · İbn Mâce, Et'ime 34",
+    sihhat:
+      "Tirmizî “garîb” demiştir; şâhidleriyle birlikte hasen kabul edilmiştir",
+  },
+  {
+    baslik: "Hurma",
+    metin:
+      "İçinde hurma bulunmayan evin halkının aç sayıldığı bildirilir. Orucun hurma ile açılması da yerleşik bir uygulamadır.",
+    bugunkuKarsiligi:
+      "Uzun açlık sonrası hızlı ve posayla birlikte gelen bir karbonhidrat kaynağı. Miktar önemlidir; Ramazan programında porsiyon belirlenir.",
+    kaynak: "Müslim, Eşribe 152–153 (Hz. Âişe'den)",
     sihhat: "Sahih",
   },
   {
-    baslik: "Talbîne — arpa çorbası",
+    baslik: "Bal",
     metin:
-      "Un hâline getirilmiş arpadan yapılan, süt ve bal katılan sulu bir çorba olan talbînenin, hasta ve kederli kişiye tavsiye edildiği nakledilmiştir.",
+      "Kur'ân'da balın insanlar için şifa taşıdığı bildirilir (Nahl 16/68–69). Hadiste de şifanın sayıldığı üç şeyden biri olarak bal şerbeti geçer.",
     bugunkuKarsiligi:
-      "Talbîne, tam tahıl arpanın sütle pişirilmiş sulu hâli. Arpa, beta-glukan açısından zengin bir tam tahıl; sulu ve ılık bir tahıl çorbası iştahsız dönemlerde tolere edilmesi kolay bir öğündür. Bu, çorbanın bir hastalığı tedavi ettiği anlamına gelmez — sadece iyi kurulmuş, sade bir tahıl öğünüdür.",
-    kaynak: "Buhârî, Et'ime 24 · Müslim, Selâm 89",
-    sihhat: "Sahih · müttefekun aleyh",
+      "Bal, rafine şekere göre daha iyi bir tercihtir ancak yine bir şekerdir. Diyabet ve insülin direnci programlarında miktarı sınırlandırılır. Bir yaş altı bebeklere botulizm riski nedeniyle kesinlikle verilmez.",
+    kaynak: "Buhârî, Tıb 3 · Kur'ân-ı Kerîm, Nahl 16/69",
+    sihhat: "Sahih",
   },
   {
     baslik: "Çörek otu",
     metin:
-      "Çörek otunun şifa taşıdığına dair rivayet, sofra ve mutfak âdâbı bahislerinde sıkça zikredilir.",
+      "Kara habbede (çörek otu) ölüm dışında her derde şifa bulunduğu bildirilir.",
     bugunkuKarsiligi:
-      "Çörek otu bir baharattır: ekmekte, peynirde, salatada kullanılır. Güncel bilgiyle söylenebilecek olan şudur — mutfakta kullanılan miktarlarda güvenli ve lezzet verici bir tohumdur. Hiçbir hastalığın tedavisi değildir, ilacın yerine geçmez ve yüksek doz takviye olarak kullanılması hekime danışmadan doğru değil. Bu sitede takviye satışı yoktur.",
-    kaynak: "Buhârî, Tıb 7 · Müslim, Selâm 88",
+      "Mutfakta faydalı bir tohum. İlaç yerine geçmez, hiçbir tedavinin yerini almaz; kan sulandırıcı kullananlarda hekime danışılmalıdır.",
+    kaynak: "Buhârî, Tıb 7 · Müslim, Selâm 88 (Ebû Hüreyre'den)",
     sihhat: "Sahih · müttefekun aleyh",
   },
   {
-    baslik: "Sahura kalkmak",
+    baslik: "Talbîne",
     metin:
-      "Sahur yemeğinde bereket bulunduğu, bir yudum su ile de olsa sahura kalkılması bildirilmiştir.",
+      "Arpa unundan yapılan sulu bir çorba olan talbînenin hastanın gönlünü rahatlattığı ve hüznün bir kısmını giderdiği bildirilmiştir.",
     bugunkuKarsiligi:
-      "Oruç tutulan günlerde sahuru atlamak, gün içindeki susuzluğu ve yorgunluğu belirgin biçimde artırır. Sahurun protein, posa ve sıvı içermesi, iftara kadar geçen süreyi daha rahat kılar. Ağır ve çok tuzlu sahur ise gün içinde susuzluk hissini artırır.",
-    kaynak: "Buhârî, Savm 20 · Müslim, Sıyâm 45",
-    sihhat: "Sahih · müttefekun aleyh",
+      "Arpa, çözünür lif (beta-glukan) bakımından zengindir; tokluk ve kan şekeri dengesi açısından değerli bir tam tahıldır.",
+    kaynak: "Buhârî, Et'ime 24 · Müslim, Selâm 89 (Hz. Âişe'den)",
+    sihhat: "Sahih",
   },
   {
-    baslik: "İftara hurma veya su ile başlamak",
+    baslik: "Oruç düzeni",
     metin:
-      "Orucun hurma ile, bulunmazsa su ile açılması tavsiye edilmiştir.",
+      "Pazartesi–perşembe oruçları, her ayın 13–14–15. günleri (eyyâm-ı bîd) ve gün aşırı tutulan Dâvûd orucu nafile oruçlar arasında sayılır.",
     bugunkuKarsiligi:
-      "Uzun açlık sonrası doğrudan büyük bir öğüne geçmek, hem sindirimi zorlar hem de porsiyon kontrolünü imkânsız kılar. Küçük bir başlangıç ve ardından kısa bir ara, iftar sofrasında yenen toplam miktarı gerçekçi tutmanın en pratik yolu.",
-    kaynak: "Ebû Dâvûd, Savm 21 · Tirmizî, Savm 10",
-    sihhat: "Hasen",
+      "Aralıklı açlık üzerine yapılan çalışmalarla benzeşen bir örüntü. Ancak diyabet, gebelik, emzirme ve düzenli ilaç kullanımı gibi durumlarda mutlaka hekim ve diyetisyenle birlikte planlanmalıdır.",
+    kaynak: "Tirmizî, Savm 44 · Buhârî, Savm 59–60 · Müslim, Sıyâm 189",
+    sihhat: "Sahih",
+  },
+  {
+    baslik: "İsraf etmemek",
+    metin:
+      "“Yiyin, için; israf etmeyin. Çünkü Allah israf edenleri sevmez.” (A'râf 7/31). Helâl ve tayyib olanın yenmesi de emredilmiştir (Bakara 2/168, Mâide 5/88).",
+    bugunkuKarsiligi:
+      "Porsiyon planlaması ve gıda israfını azaltmak. Doğru alışveriş listesi hem bütçeyi hem tabağı düzeltir.",
+    kaynak: "Kur'ân-ı Kerîm, A'râf 7/31 · Bakara 2/168 · Mâide 5/88",
+  },
+  {
+    baslik: "Şükür ve sağlık",
+    metin:
+      "Yemekten sonra hamd edilmesi tavsiye edilmiş; insanların çoğunun aldandığı iki nimetten birinin sağlık, diğerinin boş vakit olduğu bildirilmiştir.",
+    bugunkuKarsiligi:
+      "Sağlığın hastalanmadan önce korunması. Bu bir davranış meselesidir ve süreklilik ister.",
+    kaynak: "Buhârî, Rikâk 1 (İbn Abbâs'tan) · Tirmizî, Daavât 56",
+    sihhat: "Sahih",
   },
 ];

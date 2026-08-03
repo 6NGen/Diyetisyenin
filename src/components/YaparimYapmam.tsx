@@ -3,22 +3,25 @@ import { Baslik } from "@/components/ui/Baslik";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Section } from "@/components/ui/Section";
 
+// Katalog s. 11 — "Güven · Açık sözlülük".
 const YAPARIM = [
-  "Ölçüm alır, hesap yapar, her ikisini de size gösteririm.",
-  "Planı sizin mutfağınıza, bütçenize ve çalışma düzeninize göre kurarım.",
-  "Değişim listeleriyle esnek bir çerçeve veririm, sabit bir menü değil.",
-  "Görüşmeler arasında yazılı destek veririm.",
-  "Hekiminizin tanısı ve raporları doğrultusunda çalışırım.",
-  "Bir bulgu dikkatimi çekerse sizi hekime yönlendiririm.",
+  "Ölçüme ve güncel rehberlere dayanan plan yaparım.",
+  "Sizin mutfağınıza, bütçenize ve saatlerinize uyarlarım.",
+  "Hedefi gerçekçi tutarım ve hızını birlikte belirleriz.",
+  "Sevmediğiniz besini plana koymam, alternatifini bulurum.",
+  "Gerektiğinde hekime, psikoloğa veya egzersiz uzmanına yönlendiririm.",
+  "Bütün verilerinizi KVKK kapsamında gizli tutarım.",
+  "Neden öyle olduğunu sorduğunuzda gerekçesini açıklarım.",
 ];
 
 const YAPMAM = [
-  "Hastalık teşhisi koymam, tedavi önermem.",
-  "İlaç önermem, doz değiştirmem, ilaç kestirmem.",
-  "Takviye, çay, hap veya detoks programı satmam.",
-  "Süre ve sonuç garantisi vermem.",
-  "Öncesi–sonrası fotoğrafı çekmem, paylaşmam.",
-  "Danışan yorumu toplamam, sitede yayımlamam.",
+  "Detoks, çay, hap, damla veya “yağ yakıcı” ürün satmam.",
+  "Tek besine dayalı veya aşırı düşük kalorili şok diyet vermem.",
+  "“Şu kadar günde şu kadar kilo” garantisi vermem.",
+  "Herkese aynı hazır menüyü göndermem.",
+  "Hastalık teşhisi koymam, ilaç dozuna karışmam.",
+  "Kilonuz veya görünüşünüz üzerinden utandırmam.",
+  "Ölçümlerinizi veya fotoğraflarınızı izniniz olmadan hiçbir yerde paylaşmam.",
 ];
 
 export function YaparimYapmam() {

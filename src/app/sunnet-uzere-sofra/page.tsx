@@ -6,6 +6,7 @@ import { UcteBirKabi } from "@/components/UcteBirKabi";
 import { ButtonLink } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import {
+  SOFRA_GIRIS,
   SOFRA_MADDELERI,
   SOFRA_UYARISI,
   SOFRA_ZAYIF_RIVAYET_NOTU,
@@ -47,11 +48,7 @@ export default function SofraSayfasi() {
               Ölçü fikri buradan geliyor.
             </h2>
             <p className="mt-6 max-w-[62ch] text-lede text-sea-300">
-              Bu sitedeki her plan bir ölçü fikrine dayanıyor: tabağı ağzına
-              kadar doldurmamak, öğünü tam doymadan bitirmek, tokluk sinyaline
-              zaman bırakmak. Aşağıdaki maddeler bu fikrin geldiği yeri
-              gösteriyor — sağlık iddiası taşımıyor, bir kültürel çerçeve
-              sunuyor.
+              {SOFRA_GIRIS}
             </p>
             <p className="mt-5 max-w-[62ch] text-small text-sea-300">
               Maddelerin &quot;bugünkü karşılığı&quot; bölümleri benim beslenme

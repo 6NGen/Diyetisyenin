@@ -1,11 +1,12 @@
 /**
  * Paket içerikleri.
  *
- * KAYNAK NOTU: `diyetisyen-katalog.html` bu depoda bulunmadığı için maddeler
- * spesifikasyondaki fiyat ve yapı bilgisine göre yazılmıştır. Yayın öncesi
- * katalog PDF'i ile birebir karşılaştırılmalıdır (bkz. yayın kontrol listesi).
+ * KAYNAK: public/katalog.pdf — "Danışmanlık paketleri · Dört seçenek" (s. 6–7)
+ * ve "Ek hizmetler · Pakete eklenebilir" (s. 8).
  *
- * Kural: hiçbir maddede sayısal vaat, garanti veya sonuç iddiası bulunmaz.
+ * Maddeler katalogdan birebir aktarılmıştır. Katalog güncellenirse bu dosya da
+ * güncellenmelidir; ziyaretçi aynı sayfadan hem tabloyu okuyup hem PDF'i
+ * indirdiği için iki kaynağın çelişmemesi gerekir.
  */
 
 export type PaketSlug = "temel" | "denge" | "donusum" | "klinik";
@@ -32,116 +33,107 @@ export const PAKETLER: readonly Paket[] = [
     kod: "01 · Tanışma",
     ad: "Temel",
     kimeGore:
-      "Nereden başlayacağını bilmeyen, önce kendi durumunu net görmek isteyen kişiler için tek görüşmelik başlangıç.",
+      "Nereden başlayacağını bilmeyen, önce durumunu görmek isteyenler için.",
     fiyat: 2500,
     fiyatNotu: "tek seferlik",
-    sure: "Tek görüşme",
-    gorusmeSayisi: "1 görüşme · 60 dk",
+    sure: "2 hafta",
+    gorusmeSayisi: "2 görüşme",
     ozet: [
-      "60 dakikalık kapsamlı ilk değerlendirme",
-      "Antropometrik ölçüm ve vücut kompozisyonu analizi",
-      "Günlük enerji ve makro besin ihtiyacının hesaplanması",
-      "Yazılı özet rapor ve iki haftalık uygulama önerisi",
+      "60 dakikalık kapsamlı ilk görüşme",
+      "Antropometrik ölçüm + vücut analizi",
+      "Beslenme öyküsü ve alışkanlık haritası",
+      "2 haftalık kişiye özel beslenme planı",
     ],
     tamListe: [
-      "60 dakikalık kapsamlı ilk değerlendirme görüşmesi",
-      "Beslenme öyküsü, öğün düzeni ve yeme alışkanlıklarının çıkarılması",
-      "Antropometrik ölçümler: boy, ağırlık, bel ve kalça çevresi, BKİ",
-      "Biyoelektrik impedans ile vücut kompozisyonu analizi (yüz yüze görüşmelerde)",
-      "Bazal metabolizma ve günlük enerji ihtiyacının hesaplanması",
-      "Makro besin dağılımının kişiye göre belirlenmesi",
-      "Varsa mevcut tahlil sonuçlarınızın beslenme açısından okunması",
-      "Görüşme sonrası yazılı özet rapor (PDF)",
-      "İki haftalık, uygulanabilir bir başlangıç önerisi listesi",
-      "Sorularınız için görüşme sonrası 7 gün mesaj desteği",
+      "60 dakikalık kapsamlı ilk görüşme",
+      "Antropometrik ölçüm + vücut analizi",
+      "Beslenme öyküsü ve alışkanlık haritası",
+      "2 haftalık kişiye özel beslenme planı",
+      "Değişim listesi ve alışveriş rehberi",
+      "2. hafta sonunda 20 dakikalık kontrol görüşmesi",
+      "PDF rapor: ölçümler, hedefler, öneriler",
     ],
   },
   {
     slug: "denge",
-    kod: "02 · Denge",
+    kod: "02 · Düzen",
     ad: "Denge",
     kimeGore:
-      "Beslenme düzenini oturtmak ve bir ay boyunca düzenli takip ile alışkanlık kurmak isteyenler için.",
+      "Alışkanlık kurmak, öğün düzenini oturtmak ve ilk somut değişimi görmek isteyenler için.",
     fiyat: 6000,
     fiyatNotu: "/ 1 ay",
-    sure: "1 ay",
-    gorusmeSayisi: "4 görüşme · haftada 1",
+    sure: "4 hafta",
+    gorusmeSayisi: "5 görüşme",
     oneCikan: true,
     ozet: [
-      "Temel paketteki ilk değerlendirmenin tamamı",
-      "Haftalık takip görüşmeleri ve plan revizyonu",
-      "Kişiye özel öğün planı ve alışveriş listesi",
-      "Süre boyunca WhatsApp üzerinden mesaj desteği",
+      "Temel paketin tamamı",
+      "Haftalık kontrol görüşmesi (4 kontrol)",
+      "Her hafta yenilenen beslenme planı",
+      "Haftalık vücut analizi ve ölçüm takibi",
     ],
     tamListe: [
-      "Temel paketteki ilk değerlendirmenin tamamı",
-      "Haftada bir, 30 dakikalık takip görüşmesi (toplam 4 görüşme)",
-      "Kişiye özel, mevsime ve mutfağınıza göre kurulmuş öğün planı",
-      "Öğün planına eşlik eden haftalık alışveriş listesi",
-      "Dışarıda yeme, davet ve seyahat durumları için alternatif kurgular",
-      "Her görüşmede ölçüm tekrarı ve planın gerçek hayata göre revizyonu",
-      "Porsiyon ölçüleri ve el/kâse ölçüsü rehberi",
-      "Süre boyunca hafta içi WhatsApp mesaj desteği",
-      "Ay sonunda ilerleme özeti ve devam önerisi",
+      "Temel paketin tamamı",
+      "Haftalık kontrol görüşmesi (4 kontrol)",
+      "Her hafta yenilenen beslenme planı",
+      "Haftalık vücut analizi ve ölçüm takibi",
+      "WhatsApp üzerinden hafta içi soru desteği",
+      "Dışarıda yeme, davet ve seyahat senaryoları",
+      "Mutfak pratiği: 15 pratik tarif seti",
+      "Öğün fotoğrafı geri bildirimi",
     ],
   },
   {
     slug: "donusum",
-    kod: "03 · Dönüşüm",
+    kod: "03 · Kalıcılık",
     ad: "Dönüşüm",
     kimeGore:
-      "Kısa süreli düzenlemelerin kalıcı olmadığını görmüş, üç aylık bir süreçle çalışmak isteyenler için.",
+      "Hedefi büyük olan ve asıl meselesi “verdiğini geri almamak” olanlar için.",
     fiyat: 15000,
     fiyatNotu: "/ 3 ay",
-    sure: "3 ay",
-    gorusmeSayisi: "12 görüşme · haftada 1",
+    sure: "12 hafta",
+    gorusmeSayisi: "13+ görüşme",
     ozet: [
-      "Üç ay boyunca haftalık takip (12 görüşme)",
-      "Davranış odaklı çalışma: açlık, tokluk ve öğün ritmi",
-      "Egzersiz alışkanlığına göre uyarlanmış öğün zamanlaması",
-      "Üç aylık ölçüm karşılaştırması ve yazılı rapor",
+      "Denge paketinin tamamı, 12 hafta boyunca",
+      "Aylık detaylı ilerleme raporu (grafikli)",
+      "Davranış değişikliği modülü: tetikleyici haritası, duygusal yeme, farkındalıkla yeme",
+      "Egzersiz uyumu: antrenman öncesi/sonrası öğün kurgusu",
     ],
     tamListe: [
-      "Denge paketindeki her şey, üç ay boyunca",
-      "Haftada bir, 30–40 dakikalık takip görüşmesi (toplam 12 görüşme)",
-      "Davranış odaklı çalışma: açlık–tokluk farkındalığı, öğün ritmi, atıştırma düzeni",
-      "Duygusal yeme durumlarında uygulanabilir başa çıkma stratejileri",
-      "Egzersiz alışkanlığınıza göre uyarlanmış öğün zamanlaması",
-      "Aylık ölçüm tekrarı ve vücut kompozisyonu takibi",
-      "Mevsim değişimlerine göre yenilenen öğün planı",
-      "Ev dışı öğünler, tatil ve özel günler için ayrı kurgular",
-      "Süre boyunca hafta içi WhatsApp mesaj desteği",
-      "Üç aylık ölçüm karşılaştırması ve kapsamlı yazılı rapor",
-      "Süreç sonrası devamlılık planı",
+      "Denge paketinin tamamı, 12 hafta boyunca",
+      "Aylık detaylı ilerleme raporu (grafikli)",
+      "Davranış değişikliği modülü: tetikleyici haritası, duygusal yeme, farkındalıkla yeme",
+      "Egzersiz uyumu: antrenman öncesi/sonrası öğün kurgusu",
+      "Laboratuvar sonuçlarının beslenme açısından yorumu",
+      "Mevsime göre pazar rehberi",
+      "Aile sofrası uyarlaması — evdekileri ayrı yemek yapmaya mecbur bırakmayan plan",
+      "Kapanışta 3 aylık koruma ve kalıcılık planı",
+      "Program bitiminden 1 ay sonra ücretsiz takip görüşmesi",
     ],
   },
   {
     slug: "klinik",
-    kod: "04 · Klinik",
+    kod: "04 · Özel durum",
     ad: "Klinik",
     kimeGore:
-      "Hekimi tarafından tanısı konmuş ve takibi süren durumlarda, hekim yönlendirmesi doğrultusunda tıbbi beslenme tedavisi isteyenler için.",
+      "Tanı almış bir durumu olan, hekim takibiyle birlikte yürüyen danışanlar için.",
     fiyat: 18000,
     fiyatNotu: "/ 3 ay",
-    sure: "3 ay",
-    gorusmeSayisi: "12 görüşme · haftada 1",
+    sure: "12 hafta",
+    gorusmeSayisi: "Hekim iş birliğiyle",
     ozet: [
-      "Dönüşüm paketindeki üç aylık takibin tamamı",
-      "Hekim raporu ve tahlil sonuçlarına göre plan kurgusu",
-      "İlaç–besin etkileşimlerinin gözetilmesi",
-      "Talep hâlinde hekiminizle yazışma ve süreç paylaşımı",
+      "Dönüşüm paketinin tamamı",
+      "Medikal beslenme tedavisi kapsamındaki durumlar",
+      "Hekimle yazılı iş birliği ve geri bildirim",
+      "İlaç–besin etkileşimi değerlendirmesi",
     ],
     tamListe: [
-      "Dönüşüm paketindeki üç aylık takibin tamamı",
-      "Hekim raporu, tanı ve tahlil sonuçlarının beslenme açısından değerlendirilmesi",
-      "Tıbbi beslenme tedavisi ilkelerine göre kurgulanmış öğün planı",
-      "İlaç–besin ve takviye–besin etkileşimlerinin gözetilmesi",
-      "Gerektiğinde mikro besin alımının ayrıntılı takibi",
-      "Tahlil tekrarlarında planın güncellenmesi",
-      "Talep hâlinde hekiminizle yazışma ve sürecin paylaşılması",
-      "Süre boyunca hafta içi WhatsApp mesaj desteği",
-      "Üç aylık kapsamlı değerlendirme raporu",
-      "Tanı, ilaç ve tedavi kararları hekiminize aittir; bu paket beslenme ayağını yürütür",
+      "Dönüşüm paketinin tamamı",
+      "Medikal beslenme tedavisi kapsamındaki durumlar: tip 2 diyabet ve prediyabet, insülin direnci, PCOS, hipotiroidi/Hashimoto, hipertansiyon ve dislipidemi, çölyak ve gluten duyarlılığı, IBS (düşük FODMAP), karaciğer yağlanması, gebelik ve emzirme, çocuk ve ergen beslenmesi, sporcu beslenmesi, bariatrik cerrahi öncesi/sonrası",
+      "Hekimle yazılı iş birliği ve geri bildirim",
+      "İlaç–besin etkileşimi değerlendirmesi",
+      "Semptom günlüğü ve eleme–yeniden yükleme protokolleri",
+      "İki haftada bir laboratuvar takibi (hekim istemiyle)",
+      "Gerektiğinde daha sık görüşme hakkı",
     ],
   },
 ] as const;
@@ -149,6 +141,11 @@ export const PAKETLER: readonly Paket[] = [
 export function paketBul(slug: string): Paket | undefined {
   return PAKETLER.find((paket) => paket.slug === slug);
 }
+
+/** Katalog s. 7'deki ödeme notu. */
+export const ODEME_NOTU =
+  "Ödeme peşin veya taksitli yapılabilir. Online ve yüz yüze görüşme aynı fiyattadır. " +
+  "Başlanmış bir programın fiyatı süre boyunca değişmez.";
 
 /** Karşılaştırma tablosu: satırlar özellik, sütunlar paket. */
 export type KarsilastirmaSatiri = {
@@ -160,77 +157,102 @@ export const KARSILASTIRMA: readonly KarsilastirmaSatiri[] = [
   {
     ozellik: "Süre",
     deger: {
-      temel: "Tek görüşme",
-      denge: "1 ay",
-      donusum: "3 ay",
-      klinik: "3 ay",
+      temel: "2 hafta",
+      denge: "4 hafta",
+      donusum: "12 hafta",
+      klinik: "12 hafta",
     },
   },
   {
     ozellik: "Görüşme sayısı",
-    deger: { temel: "1", denge: "4", donusum: "12", klinik: "12" },
-  },
-  {
-    ozellik: "İlk değerlendirme (60 dk)",
-    deger: { temel: true, denge: true, donusum: true, klinik: true },
-  },
-  {
-    ozellik: "Antropometrik ölçüm",
-    deger: { temel: true, denge: true, donusum: true, klinik: true },
-  },
-  {
-    ozellik: "Vücut kompozisyonu analizi",
-    deger: { temel: true, denge: true, donusum: true, klinik: true },
-  },
-  {
-    ozellik: "Enerji ve makro hesabı",
-    deger: { temel: true, denge: true, donusum: true, klinik: true },
-  },
-  {
-    ozellik: "Kişiye özel öğün planı",
-    deger: { temel: false, denge: true, donusum: true, klinik: true },
-  },
-  {
-    ozellik: "Haftalık alışveriş listesi",
-    deger: { temel: false, denge: true, donusum: true, klinik: true },
-  },
-  {
-    ozellik: "Plan revizyonu",
     deger: {
-      temel: false,
+      temel: "2",
+      denge: "5",
+      donusum: "13+",
+      klinik: "13+",
+    },
+  },
+  {
+    ozellik: "60 dakikalık ilk görüşme",
+    deger: { temel: true, denge: true, donusum: true, klinik: true },
+  },
+  {
+    ozellik: "Antropometrik ölçüm + vücut analizi",
+    deger: { temel: true, denge: true, donusum: true, klinik: true },
+  },
+  {
+    ozellik: "Kişiye özel beslenme planı",
+    deger: {
+      temel: "2 haftalık",
+      denge: "Her hafta yenilenir",
+      donusum: "Her hafta yenilenir",
+      klinik: "Her hafta yenilenir",
+    },
+  },
+  {
+    ozellik: "Değişim listesi ve alışveriş rehberi",
+    deger: { temel: true, denge: true, donusum: true, klinik: true },
+  },
+  {
+    ozellik: "Ölçüm takibi",
+    deger: {
+      temel: "2. hafta",
       denge: "Haftalık",
       donusum: "Haftalık",
       klinik: "Haftalık",
     },
   },
   {
-    ozellik: "Davranış odaklı çalışma",
+    ozellik: "WhatsApp soru desteği",
+    deger: { temel: false, denge: true, donusum: true, klinik: true },
+  },
+  {
+    ozellik: "Mutfak pratiği: 15 tarif seti",
+    deger: { temel: false, denge: true, donusum: true, klinik: true },
+  },
+  {
+    ozellik: "Öğün fotoğrafı geri bildirimi",
+    deger: { temel: false, denge: true, donusum: true, klinik: true },
+  },
+  {
+    ozellik: "Aylık ilerleme raporu (grafikli)",
     deger: { temel: false, denge: false, donusum: true, klinik: true },
   },
   {
-    ozellik: "Mesaj desteği",
-    deger: { temel: "7 gün", denge: "1 ay", donusum: "3 ay", klinik: "3 ay" },
+    ozellik: "Davranış değişikliği modülü",
+    deger: { temel: false, denge: false, donusum: true, klinik: true },
   },
   {
-    ozellik: "Tahlil sonuçlarının değerlendirilmesi",
-    deger: { temel: "Özet", denge: "Özet", donusum: true, klinik: true },
+    ozellik: "Egzersiz uyumu",
+    deger: { temel: false, denge: false, donusum: true, klinik: true },
   },
   {
-    ozellik: "İlaç–besin etkileşimi takibi",
+    ozellik: "Laboratuvar sonuçlarının yorumu",
+    deger: { temel: false, denge: false, donusum: true, klinik: true },
+  },
+  {
+    ozellik: "Aile sofrası uyarlaması",
+    deger: { temel: false, denge: false, donusum: true, klinik: true },
+  },
+  {
+    ozellik: "Kalıcılık planı + 1 ay sonra ücretsiz takip",
+    deger: { temel: false, denge: false, donusum: true, klinik: true },
+  },
+  {
+    ozellik: "Medikal beslenme tedavisi",
     deger: { temel: false, denge: false, donusum: false, klinik: true },
   },
   {
-    ozellik: "Hekimle yazışma",
+    ozellik: "Hekimle yazılı iş birliği",
     deger: { temel: false, denge: false, donusum: false, klinik: true },
   },
   {
-    ozellik: "Yazılı rapor",
-    deger: {
-      temel: "Özet",
-      denge: "Aylık",
-      donusum: "Kapsamlı",
-      klinik: "Kapsamlı",
-    },
+    ozellik: "İlaç–besin etkileşimi değerlendirmesi",
+    deger: { temel: false, denge: false, donusum: false, klinik: true },
+  },
+  {
+    ozellik: "Semptom günlüğü ve eleme protokolleri",
+    deger: { temel: false, denge: false, donusum: false, klinik: true },
   },
   {
     ozellik: "Online görüşme imkânı",
@@ -240,29 +262,41 @@ export const KARSILASTIRMA: readonly KarsilastirmaSatiri[] = [
 
 export type EkHizmet = { ad: string; aciklama: string; fiyat: string };
 
+/** Katalog s. 8 — "Yanına alınabilecekler". */
 export const EK_HIZMETLER: readonly EkHizmet[] = [
   {
-    ad: "Tek seferlik kontrol görüşmesi",
+    ad: "Tek seans görüşme",
     aciklama:
-      "Daha önce birlikte çalıştığımız danışanlar için 30 dakikalık ara kontrol ve plan güncellemesi.",
+      "Paket almadan tek konuyu konuşmak isteyenler için 45 dakika.",
+    fiyat: "1.500 ₺",
+  },
+  {
+    ad: "Mutfak/dolap denetimi",
+    aciklama:
+      "Evde ya da online; kilerin ve buzdolabının birlikte gözden geçirilmesi.",
     fiyat: "1.200 ₺",
   },
   {
-    ad: "Ölçüm ve rapor",
-    aciklama:
-      "Yalnızca antropometrik ölçüm, vücut kompozisyonu analizi ve yazılı yorum. Plan içermez.",
-    fiyat: "900 ₺",
+    ad: "Aile paketi ek kişi",
+    aciklama: "Aynı evden ikinci kişi, kendi planı ve kendi ölçümleriyle.",
+    fiyat: "%40 indirimli",
   },
   {
-    ad: "Kurum içi seminer",
+    ad: "Kurumsal seminer",
     aciklama:
-      "İş yerlerinde beslenme, öğün düzeni ve ofis atıştırmalıkları üzerine 60 dakikalık sunum.",
+      "İş yerlerine 60–90 dakikalık beslenme semineri; soru-cevap dahil.",
     fiyat: "Talebe göre",
   },
   {
-    ad: "Aile paketi ek kişi",
+    ad: "Ramazan programı",
     aciklama:
-      "Aynı hanede yaşayan ikinci kişi için Denge veya Dönüşüm paketine indirimli ek katılım.",
-    fiyat: "%25 indirim",
+      "Sahur–iftar kurgusu, sıvı planı, bayram geçişi ve oruç dönemi ilaç uyumu.",
+    fiyat: "2.000 ₺",
+  },
+  {
+    ad: "Tarif ve menü kitapçığı",
+    aciklama:
+      "30 tarif, alışveriş listeleri ve haftalık menü şablonu (PDF).",
+    fiyat: "600 ₺",
   },
 ];

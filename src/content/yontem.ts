@@ -1,6 +1,8 @@
 /**
  * Yöntem sayfası içeriği.
- * ADIME beş adım + ölçüm/hesaplama veri blokları + kaynak listesi.
+ *
+ * KAYNAK: public/katalog.pdf — "Süreç · Beş adım" (s. 3) ve
+ * "Yöntem · Ölçüm ve hesaplama" (s. 4–5).
  */
 
 export type YontemAdimi = {
@@ -11,70 +13,73 @@ export type YontemAdimi = {
   maddeler: string[];
 };
 
-/** ADIME: Assessment – Diagnosis – Intervention – Monitoring – Evaluation */
+export const ADIME_GIRIS =
+  "Uluslararası Beslenme Bakım Süreci (Nutrition Care Process — ADIME) modelini takip " +
+  "ediyorum. Her danışan aynı beş adımdan geçer; içerik kişiye göre değişir, yöntem değişmez.";
+
 export const ADIME: readonly YontemAdimi[] = [
   {
     no: "01",
-    kod: "Assessment",
+    kod: "A",
     baslik: "Değerlendirme",
     ozet:
-      "Önce ölçülür. Beslenme öyküsü, ölçümler, varsa tahliller ve günlük hayatın gerçek düzeni bir arada okunur.",
+      "Beslenme öyküsü, hastalık ve ilaç geçmişi, uyku, hareket, laboratuvar sonuçları, antropometrik ölçümler.",
     maddeler: [
-      "24 saatlik geri çağırma ve besin tüketim sıklığı",
-      "Antropometrik ölçümler ve vücut kompozisyonu",
-      "Uyku, hareket, çalışma düzeni ve öğün saatleri",
-      "Hekim tarafından istenmiş tahlil sonuçlarının beslenme açısından okunması",
+      "Beslenme öyküsü ve alışkanlık haritası",
+      "Hastalık ve ilaç geçmişi",
+      "Uyku ve hareket düzeni",
+      "Laboratuvar sonuçları ve antropometrik ölçümler",
     ],
   },
   {
     no: "02",
-    kod: "Diagnosis",
-    baslik: "Beslenme tanısı",
+    kod: "D",
+    baslik: "Tanımlama",
     ozet:
-      "Hastalık teşhisi değil, beslenme tanısıdır: PES formatında sorun, sebep ve belirtiler yazılır.",
+      "Sorunun beslenme diliyle adı konur: yetersiz protein alımı, düzensiz öğün örüntüsü, sıvı açığı gibi.",
     maddeler: [
-      "Sorun (Problem): ölçüme dayalı, tek cümlelik tanım",
-      "Etiyoloji (Etiology): sorunun arkasındaki davranış veya koşul",
-      "Belirtiler (Signs/Symptoms): tanıyı destekleyen ölçülebilir veriler",
-      "Tıbbi tanı hekimin yetkisindedir; burada yalnızca beslenme boyutu adlandırılır",
+      "Sorun beslenme diliyle adlandırılır",
+      "Örnek: yetersiz protein alımı",
+      "Örnek: düzensiz öğün örüntüsü",
+      "Örnek: sıvı açığı",
     ],
   },
   {
     no: "03",
-    kod: "Intervention",
+    kod: "I",
     baslik: "Müdahale",
     ozet:
-      "Plan buradan çıkar. Hesaplanan enerji ve besin ögesi hedefleri, kişinin mutfağına ve bütçesine göre öğüne dönüşür.",
+      "Kişiye özel öğün planı, alışveriş listesi, mutfak pratiği ve davranış hedefleri. Birlikte yazılır.",
     maddeler: [
-      "Enerji, makro ve öncelikli mikro besin hedeflerinin belirlenmesi",
-      "Öğün sayısı, zamanlaması ve porsiyon ölçüleri",
-      "Mevsim, mutfak alışkanlığı ve bütçeye göre besin seçimi",
-      "Uygulanabilirliği artıran değişim listeleri ve alternatifler",
+      "Kişiye özel öğün planı",
+      "Alışveriş listesi",
+      "Mutfak pratiği",
+      "Davranış hedefleri — birlikte yazılır",
     ],
   },
   {
     no: "04",
-    kod: "Monitoring",
+    kod: "M",
     baslik: "İzlem",
     ozet:
-      "Plan bir kez yazılıp bırakılmaz. Haftalık görüşmelerde neyin tuttuğu, neyin tutmadığı konuşulur.",
+      "Planlı kontrollerde ölçüm tekrarı, kayıt incelemesi ve engellerin konuşulması.",
     maddeler: [
-      "Ölçüm tekrarı ve eğilimin izlenmesi",
-      "Uyum güçlüğü yaşanan öğünlerin ayrıştırılması",
-      "Açlık–tokluk, enerji ve uyku geri bildirimi",
-      "Gerektiğinde planın küçük adımlarla revizyonu",
+      "Planlı kontrol görüşmeleri",
+      "Ölçüm tekrarı",
+      "Besin tüketim kaydının incelenmesi",
+      "Uygulamayı zorlaştıran engellerin konuşulması",
     ],
   },
   {
     no: "05",
-    kod: "Evaluation",
+    kod: "E",
     baslik: "Değerlendirme",
     ozet:
-      "Süreç sonunda başlangıç verileriyle karşılaştırma yapılır; devam edilecek mi, nasıl edilecek, birlikte kararlaştırılır.",
+      "Hedefe göre sonuç ölçümü; plan ya sürdürülür ya revize edilir. Kapanışta kalıcılık planı.",
     maddeler: [
-      "Başlangıç ve bitiş ölçümlerinin karşılaştırılması",
-      "Hedeflere göre ilerlemenin yazılı özeti",
-      "Kalıcılık için sürdürme planı",
+      "Hedefe göre sonuç ölçümü",
+      "Planın sürdürülmesi veya revizyonu",
+      "Kapanışta kalıcılık planı",
       "Gerekiyorsa hekime veya başka bir uzmana yönlendirme",
     ],
   },
@@ -87,35 +92,38 @@ export type VeriBlogu = {
   satirlar: { ad: string; aciklama: string; formul?: string }[];
 };
 
+export const VERI_BLOKLARI_GIRIS =
+  "Programınızdaki her sayının bir dayanağı var. Aşağıda kullandığım ölçüm ve hesaplama " +
+  "araçlarının tamamı yer alıyor — isterseniz ilk görüşmede tek tek konuşuruz.";
+
 export const VERI_BLOKLARI: readonly VeriBlogu[] = [
   {
     kod: "A",
     baslik: "Antropometrik ölçüm",
     giris:
-      "Vücudun dış ölçüleri. Tek başına bir şey söylemez; eğilim olarak okunduğunda anlam kazanır.",
+      "Vücudun dış ölçüleri. Tek bir ölçüm değil, birkaçı bir arada okunduğunda anlam kazanır.",
     satirlar: [
       {
         ad: "Beden Kütle İndeksi (BKİ)",
         aciklama:
-          "Kaba bir tarama aracıdır. Kas kütlesi yüksek kişilerde yanıltır, tek başına karar verdirmez.",
-        formul: "BKİ = ağırlık (kg) / boy (m)²",
+          "Tek başına yeterli değildir; kas kütlesi yüksek kişilerde yanıltır. Bu yüzden yalnız kullanılmaz.",
+        formul: "BKİ = kg / m²",
       },
       {
         ad: "Bel çevresi",
         aciklama:
-          "Karın bölgesindeki yağlanmanın göstergesi. Ölçüm, en alt kaburga ile kalça kemiği arasındaki orta noktadan, normal nefes verme sonunda alınır.",
+          "Karın içi yağlanmanın göstergesi. DSÖ eşikleri: kadın 80 / 88 cm, erkek 94 / 102 cm.",
       },
       {
-        ad: "Bel/kalça oranı",
+        ad: "Bel / boy oranı",
         aciklama:
-          "Yağ dağılımının biçimini gösterir. Bel çevresiyle birlikte değerlendirilir.",
-        formul: "BKO = bel çevresi (cm) / kalça çevresi (cm)",
+          "Kardiyometabolik riski BKİ'den daha iyi öngörür.",
+        formul: "Hedef: bel çevresi / boy < 0,5",
       },
       {
-        ad: "Bel/boy oranı",
+        ad: "Boyun, kalça, orta kol çevresi",
         aciklama:
-          "Basitliği nedeniyle son yıllarda öne çıkan ölçüt. Yaş ve cinsiyetten görece bağımsızdır.",
-        formul: "BBO = bel çevresi (cm) / boy (cm)",
+          "Uyku apnesi taraması ve yağ dağılım örüntüsü için tamamlayıcı ölçümler.",
       },
     ],
   },
@@ -126,20 +134,19 @@ export const VERI_BLOKLARI: readonly VeriBlogu[] = [
       "Tartıdaki sayı yağ, kas, su ve kemiğin toplamıdır. Hangisinin değiştiği, ne kadar değiştiğinden önemlidir.",
     satirlar: [
       {
-        ad: "Biyoelektrik impedans (BİA)",
+        ad: "Biyoelektrik impedans (BIA)",
         aciklama:
-          "Vücuttan geçen düşük şiddetli akımın direncinden yağ ve yağsız kütle tahmin edilir. Ölçüm öncesi su tüketimi, egzersiz ve öğün zamanı sonucu etkiler; bu yüzden her ölçüm benzer koşullarda alınır.",
+          "Yağ kütlesi, yağsız kütle, toplam vücut suyu, bazal metabolizma tahmini. Standart koşullarda tekrarlanır: aynı saat, aç, tuvalet sonrası, egzersizsiz.",
       },
       {
-        ad: "Yağsız vücut kütlesi (YVK)",
+        ad: "Neden sadece tartı değil",
         aciklama:
-          "Kas, kemik, organ ve suyun toplamı. Süreç boyunca korunması hedeflenen kısım budur.",
-        formul: "YVK = toplam ağırlık − yağ kütlesi",
+          "İki kişi aynı kiloda olabilir; biri kas biri yağ kaybediyor olabilir. Takip kilo üzerinden değil kompozisyon üzerinden yapılır.",
       },
       {
-        ad: "Deri kıvrım kalınlığı",
+        ad: "Çevre ölçümü",
         aciklama:
-          "Kaliperle belirli noktalardan alınan ölçümler. BİA'nın uygun olmadığı durumlarda tamamlayıcı olarak kullanılır.",
+          "Tartının durduğu haftalarda ilerlemeyi gösteren ikinci kanıt. Ölçüm kayıtları izniniz olmadan hiçbir yerde paylaşılmaz.",
       },
     ],
   },
@@ -150,22 +157,26 @@ export const VERI_BLOKLARI: readonly VeriBlogu[] = [
       "Günlük enerji ihtiyacı tahmin edilir, ölçülmez. Denklemler başlangıç noktasıdır; asıl ayar takip sırasında yapılır.",
     satirlar: [
       {
-        ad: "Bazal metabolik hız — Mifflin-St Jeor",
-        aciklama:
-          "Sağlıklı yetişkinlerde en tutarlı sonuç veren denklemlerden biridir.",
+        ad: "Bazal metabolizma — Mifflin-St Jeor",
+        aciklama: "Sağlıklı yetişkinlerde en tutarlı sonuç veren denklemlerden biri.",
         formul:
-          "Erkek: BMH = 10 × kg + 6,25 × cm − 5 × yaş + 5 · Kadın: BMH = 10 × kg + 6,25 × cm − 5 × yaş − 161",
+          "E: 10×kg + 6,25×cm − 5×yaş + 5 · K: 10×kg + 6,25×cm − 5×yaş − 161",
       },
       {
-        ad: "Harris-Benedict (revize)",
-        aciklama:
-          "Daha eski bir denklem. Karşılaştırma amacıyla ikinci bir tahmin olarak kullanılabilir.",
+        ad: "Fiziksel aktivite düzeyi (PAL)",
+        aciklama: "Katsayılarla günlük ihtiyaç bulunur.",
+        formul: "Hareketsiz 1,2 · hafif 1,375 · orta 1,55 · yüksek 1,725",
       },
       {
-        ad: "Fiziksel aktivite katsayısı (PAL)",
+        ad: "Yağsız kütle bilinen kişilerde",
         aciklama:
-          "Hareketsizden çok aktife 1,2–1,9 aralığında değişir. Toplam enerji ihtiyacı bu katsayıyla bulunur.",
-        formul: "TEH = BMH × PAL",
+          "Katch-McArdle denklemi tercih edilir; BIA verisi olduğunda daha isabetli sonuç verir.",
+      },
+      {
+        ad: "Güvenli değişim hızı",
+        aciklama:
+          "Daha hızlısı kas kaybı ve geri alma riskini büyütür.",
+        formul: "Haftada vücut ağırlığının %0,5–1'i",
       },
     ],
   },
@@ -176,84 +187,89 @@ export const VERI_BLOKLARI: readonly VeriBlogu[] = [
       "Toplam enerji hedeflendikten sonra bu enerjinin nereden geleceği belirlenir.",
     satirlar: [
       {
+        ad: "Referans aralıklar (TÜBER 2022)",
+        aciklama: "Türkiye Beslenme Rehberi'nin yetişkin için verdiği aralıklar.",
+        formul: "Karbonhidrat %45–60 · Protein %10–20 · Yağ %20–35 (doymuş <%10)",
+      },
+      {
         ad: "Protein",
         aciklama:
-          "Sağlıklı yetişkinde genellikle vücut ağırlığının kilogramı başına 0,8–1,6 g aralığında planlanır; aktivite düzeyi ve hedefe göre değişir. Böbrek hastalığı olanlarda hekim tarafından belirlenir.",
-        formul: "1 g protein ≈ 4 kcal",
+          "Sağlıklı yetişkinde 0,8–1,0 g/kg; ağırlık kaybı ve düzenli antrenman döneminde artırılır, böbrek hastalığında hekim görüşüyle sınırlandırılır.",
       },
       {
-        ad: "Yağ",
+        ad: "Posa",
         aciklama:
-          "Genellikle toplam enerjinin %25–35'i. Doymuş yağ oranı ve yağ asidi profili miktardan daha belirleyicidir.",
-        formul: "1 g yağ ≈ 9 kcal",
+          "Günde 25–30 g. Tokluk, bağırsak sağlığı ve kan şekeri dengesinin en ucuz aracı.",
       },
       {
-        ad: "Karbonhidrat",
+        ad: "Sıvı",
         aciklama:
-          "Kalan enerjiden hesaplanır. Miktar kadar kaynağı, posa içeriği ve öğün içindeki bileşimi önemlidir.",
-        formul: "1 g karbonhidrat ≈ 4 kcal",
+          "Yaklaşık 30–35 ml/kg; sıcak hava, emzirme ve yoğun egzersizde yukarı çekilir.",
       },
       {
-        ad: "Posa, sıvı ve mikro besinler",
+        ad: "Risk altındaki mikro besinler",
         aciklama:
-          "Günlük posa hedefi, sıvı alımı ve öncelikli vitamin–mineraller (D vitamini, B12, demir, kalsiyum) plan içinde ayrıca takip edilir.",
+          "D vitamini, B12, demir, folat, iyot, kalsiyum, omega-3. Gerekirse hekimden tetkik istenir.",
       },
     ],
   },
   {
     kod: "E",
     baslik: "Planlama araçları",
-    giris:
-      "Hesap kâğıtta kalırsa işe yaramaz. Plan mutfakta uygulanabilir hâle getirilir.",
+    giris: "Hesap kâğıtta kalırsa işe yaramaz. Plan mutfakta uygulanabilir hâle getirilir.",
     satirlar: [
       {
-        ad: "Besin değişim listeleri",
+        ad: "Besin tüketim kaydı",
         aciklama:
-          "Aynı enerji ve makro değerine sahip besinlerin birbirinin yerine kullanılabilmesi. Planı esnek kılan asıl araçtır.",
+          "24 saatlik geri çağırma ve 3 günlük kayıt (2 hafta içi + 1 hafta sonu). Analiz BeBiS ile yapılır.",
       },
       {
-        ad: "Porsiyon ölçüleri",
+        ad: "Değişim listeleri",
         aciklama:
-          "Avuç, kâse, yemek kaşığı gibi mutfakta zaten var olan ölçüler. Tartı zorunlu değildir.",
+          "Sabit menü yerine eşdeğer gruplar. “Bunu yiyemezsen yerine şunu” mantığı — sürdürülebilirliğin anahtarı.",
+      },
+      {
+        ad: "Tabak modeli",
+        aciklama:
+          "Yarısı sebze, çeyreği protein, çeyreği tam tahıl. Tartı istemeyen danışanlar için birincil araç.",
       },
       {
         ad: "Glisemik indeks ve yük",
         aciklama:
-          "Tek başına besin sıralamak için değil, öğün bileşimini kurmak için kullanılır. Karma öğünde tek besinin indeksi belirleyici olmaz.",
+          "İnsülin direnci, diyabet ve PCOS programlarında öğün kurgusunun temeli.",
         formul: "GY = (Gİ × karbonhidrat miktarı) / 100",
       },
       {
-        ad: "Besin tüketim kaydı",
+        ad: "Davranışsal yöntemler",
         aciklama:
-          "Üç günlük kayıt, hafızadan anlatılan bir haftadan daha çok bilgi verir.",
+          "Hedef daraltma, tetikleyici haritası, öğün düzeni, farkındalıkla yeme, uyku ve stres bağlantısı.",
       },
     ],
   },
   {
     kod: "F",
     baslik: "Sınırlar",
-    giris:
-      "Bir yöntemin en önemli parçası, neyi yapmadığını bilmesidir.",
+    giris: "Bir yöntemin en önemli parçası, neyi yapmadığını bilmesidir.",
     satirlar: [
       {
-        ad: "Teşhis koymam",
+        ad: "Tanı koymam",
         aciklama:
-          "Hastalık teşhisi hekimin yetkisindedir. Ölçümlerde dikkat çeken bir bulgu olduğunda yönlendirme yaparım.",
+          "Hastalık teşhisi ve ilaç düzenlemesi hekimin yetkisindedir. Şüphe hâlinde yönlendirir, hekimle iş birliği içinde çalışırım.",
       },
       {
-        ad: "İlaç önermem, ilaç kesmem",
+        ad: "Tedaviyi değiştirmem",
         aciklama:
-          "İlaç ve doz kararı hekime aittir. Beslenme planı, kullandığınız ilaçları gözeterek kurulur.",
+          "İnsülin, tiroid ilacı, tansiyon ilacı gibi tedavilerde doz kararı hekime aittir; ben beslenmeyi ona uyarlarım.",
       },
       {
-        ad: "Takviye satmam",
+        ad: "Sonuç garantisi vermem",
         aciklama:
-          "Bu sitede ve görüşmelerde ürün satışı yoktur. Takviye ihtiyacı varsa gerekçesiyle birlikte konuşulur.",
+          "Kaç kilo verileceğine dair taahhüt bilimsel olarak da hukuken de mümkün değildir.",
       },
       {
-        ad: "Süre ve sonuç sözü vermem",
+        ad: "Ürün satmam",
         aciklama:
-          "Beslenme müdahalesinin sonucu kişiden kişiye değişir. Ölçülebilir hedef koyarım, sonuç garantisi vermem.",
+          "Detoks, çay, hap, damla veya “yağ yakıcı” ürün satışı yapmam. Gelir yalnızca danışmanlıktan gelir.",
       },
     ],
   },
@@ -261,39 +277,32 @@ export const VERI_BLOKLARI: readonly VeriBlogu[] = [
 
 export type Kaynak = { kunye: string; not?: string };
 
+/** Katalog s. 5 — "Başvurduğum kaynaklar". */
 export const KAYNAKLAR: readonly Kaynak[] = [
   {
     kunye:
-      "T.C. Sağlık Bakanlığı, Türkiye Beslenme Rehberi (TÜBER), Ankara, 2022.",
-    not: "Türkiye'ye özgü referans alım değerleri ve besin grubu önerileri.",
+      "T.C. Sağlık Bakanlığı — Türkiye Beslenme Rehberi (TÜBER) 2022",
+    not: "Makro besin referans aralıklarının ve besin grubu önerilerinin kaynağı.",
   },
   {
     kunye:
-      "T.C. Sağlık Bakanlığı, Türkiye'ye Özgü Besin ve Beslenme Rehberi, Ankara, 2015.",
+      "T.C. Sağlık Bakanlığı — Türkiye Diyabet Programı ve ilgili tanı-tedavi kılavuzları",
   },
   {
     kunye:
-      "Academy of Nutrition and Dietetics, Nutrition Care Process and Terminology (NCPT).",
-    not: "ADIME adımlarının ve PES ifadesinin kaynağı.",
+      "Dünya Sağlık Örgütü (WHO) — beslenme, şeker, tuz ve yağ alım önerileri",
   },
   {
     kunye:
-      "Mifflin MD ve ark., \"A new predictive equation for resting energy expenditure in healthy individuals\", Am J Clin Nutr, 1990;51(2):241-247.",
+      "EFSA — Avrupa Diyetle Referans Alım Değerleri (Dietary Reference Values)",
   },
   {
     kunye:
-      "World Health Organization, Waist Circumference and Waist–Hip Ratio: Report of a WHO Expert Consultation, Cenevre, 2011.",
+      "Academy of Nutrition and Dietetics — Nutrition Care Process (ADIME)",
+    not: "Beş adımlı sürecin kaynağı.",
   },
+  { kunye: "ESPEN — klinik beslenme kılavuzları" },
   {
-    kunye:
-      "Kyle UG ve ark., \"Bioelectrical impedance analysis — part I & II\", Clinical Nutrition, 2004;23(5):1226-1243 ve 23(6):1430-1453.",
-  },
-  {
-    kunye:
-      "EFSA Panel on Dietetic Products, Nutrition and Allergies, Dietary Reference Values for nutrients — Summary report, 2017.",
-  },
-  {
-    kunye:
-      "Türkiye Diyetisyenler Derneği, Diyetisyenler İçin Meslek Etiği Kuralları.",
+    kunye: "Türkiye Diyetisyenler Derneği yayınları ve mesleki etik ilkeleri",
   },
 ];

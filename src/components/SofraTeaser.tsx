@@ -9,7 +9,8 @@ import { SOFRA_MADDELERI } from "@/content/sofra";
  * Bu bölümün zeminini değiştirmeyin, başka bölüme koyu yeşil vermeyin.
  */
 export function SofraTeaser() {
-  const ucteBir = SOFRA_MADDELERI[2];
+  // Katalogdaki sıralamada 'Üçte bir ölçüsü' ilk maddedir.
+  const ucteBir = SOFRA_MADDELERI[0];
 
   return (
     <section className="bolum-bosluk bg-sea-900">

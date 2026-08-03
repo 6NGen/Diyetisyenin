@@ -7,7 +7,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Baslik, Lede } from "@/components/ui/Baslik";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Section } from "@/components/ui/Section";
-import { EK_HIZMETLER } from "@/content/paketler";
+import { EK_HIZMETLER, ODEME_NOTU } from "@/content/paketler";
 
 export const dynamic = "force-static";
 
@@ -51,8 +51,7 @@ export default function PaketlerSayfasi() {
 
         <Reveal className="mt-8">
           <p className="max-w-[68ch] text-small text-muted">
-            Ücretler tek kişilik danışmanlık içindir ve KDV dahildir. Ödeme
-            koşulları, erteleme ve iade kuralları{" "}
+            {ODEME_NOTU} Erteleme ve iade kuralları{" "}
             <a
               className="text-sea-700 underline underline-offset-4"
               href="/iptal-ve-iade"
@@ -74,7 +73,8 @@ export default function PaketlerSayfasi() {
         </Reveal>
 
         <Reveal className="mt-9">
-          <ul className="izgara-cizgi grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Katalogda altı ek hizmet var; 3'lü ızgara iki tam satır veriyor. */}
+          <ul className="izgara-cizgi grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {EK_HIZMETLER.map((hizmet) => (
               <li
                 key={hizmet.ad}
