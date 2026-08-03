@@ -2,10 +2,13 @@
 
 import { useId, useState } from "react";
 import {
+  GIRDI_ARALIKLARI,
   PAL_SECENEKLERI,
   POSA_HEDEFI,
   bmhHesapla,
-  girdiyiSayiyaCevir,
+  gecerliDegerler,
+  girdiDogrula,
+  hataVarMi,
   makroAraliklari,
   palKatsayisi,
   sayiYaz,
@@ -40,17 +43,18 @@ export function EnerjiAraci() {
   const [yas, setYas] = useState("");
   const [pal, setPal] = useState<PalDegeri>("hafif");
 
-  const kgSayi = girdiyiSayiyaCevir(kg);
-  const bmh = bmhHesapla(
-    cinsiyet,
-    kgSayi,
-    girdiyiSayiyaCevir(boy),
-    girdiyiSayiyaCevir(yas),
-  );
+  const yasSonuc = girdiDogrula(yas, GIRDI_ARALIKLARI.yas);
+  const kgSonuc = girdiDogrula(kg, GIRDI_ARALIKLARI.kg);
+  const boySonuc = girdiDogrula(boy, GIRDI_ARALIKLARI.boy);
+
+  const degerler = gecerliDegerler(kgSonuc, boySonuc, yasSonuc);
+  const bmh = degerler
+    ? bmhHesapla(cinsiyet, degerler[0]!, degerler[1]!, degerler[2]!)
+    : null;
   const katsayi = palKatsayisi(pal);
   const gunluk = bmh === null ? null : bmh * katsayi;
   const makrolar = gunluk === null ? null : makroAraliklari(gunluk);
-  const sivi = sivIAraligi(kgSayi);
+  const sivi = degerler ? sivIAraligi(degerler[0]!) : null;
 
   return (
     <div className="grid gap-[clamp(28px,4vw,48px)] lg:grid-cols-2">
@@ -73,8 +77,8 @@ export function EnerjiAraci() {
           birim="yıl"
           deger={yas}
           onChange={setYas}
-          min={18}
-          max={100}
+          hata={yasSonuc.durum === "hata" ? yasSonuc.mesaj : undefined}
+          ornek="35"
         />
         <SayiAlani
           id={`${on}-kg`}
@@ -82,8 +86,8 @@ export function EnerjiAraci() {
           birim="kg"
           deger={kg}
           onChange={setKg}
-          min={30}
-          max={300}
+          hata={kgSonuc.durum === "hata" ? kgSonuc.mesaj : undefined}
+          ornek="70"
         />
         <SayiAlani
           id={`${on}-boy`}
@@ -91,8 +95,9 @@ export function EnerjiAraci() {
           birim="cm"
           deger={boy}
           onChange={setBoy}
-          min={120}
-          max={230}
+          hata={boySonuc.durum === "hata" ? boySonuc.mesaj : undefined}
+          ornek="177"
+          yardim="Santimetre cinsinden (örnek: 177)."
         />
         <SecimAlani
           id={`${on}-pal`}
@@ -108,7 +113,9 @@ export function EnerjiAraci() {
         <SonucKutusu>
           {gunluk === null || bmh === null ? (
             <BeklemeMetni>
-              Yaş, ağırlık ve boy girdiğinizde sonuç burada belirir.
+              {hataVarMi(yasSonuc, kgSonuc, boySonuc)
+                ? "Sonuç için soldaki uyarıyı düzeltin."
+                : "Yaş, ağırlık ve boy girdiğinizde sonuç burada belirir."}
             </BeklemeMetni>
           ) : (
             <>

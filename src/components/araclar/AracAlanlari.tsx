@@ -14,8 +14,8 @@ export function SayiAlani({
   deger,
   onChange,
   yardim,
-  min,
-  max,
+  hata,
+  ornek,
 }: {
   id: string;
   etiket: string;
@@ -23,10 +23,13 @@ export function SayiAlani({
   deger: string;
   onChange: (yeni: string) => void;
   yardim?: string;
-  min?: number;
-  max?: number;
+  /** Aralık dışı veya anlamsız değer için açıklama. */
+  hata?: string;
+  /** Alan boşken gösterilen örnek değer. */
+  ornek?: string;
 }) {
-  const yardimId = yardim ? `${id}-yardim` : undefined;
+  const hataId = `${id}-hata`;
+  const yardimId = `${id}-yardim`;
 
   return (
     <div>
@@ -36,20 +39,32 @@ export function SayiAlani({
       >
         {etiket} <span className="text-muted normal-case">({birim})</span>
       </label>
+      {/*
+        type="number" değil: tarayıcı diline göre virgül reddedilebiliyor ve
+        Türkçe kullanıcı "72,5" yazamıyor. Metin alanı + inputMode="decimal"
+        mobilde yine sayı klavyesi açar; ayrıştırmayı girdiDogrula yapar ve
+        hem virgülü hem noktayı kabul eder.
+      */}
       <input
         id={id}
-        type="number"
+        type="text"
         inputMode="decimal"
         value={deger}
-        min={min}
-        max={max}
-        step="any"
+        placeholder={ornek ? `örn. ${ornek}` : undefined}
         autoComplete="off"
         onChange={(olay) => onChange(olay.target.value)}
-        aria-describedby={yardimId}
-        className={`mt-2.5 ${GIRDI_SINIFI}`}
+        aria-invalid={hata ? true : undefined}
+        aria-describedby={hata ? hataId : yardim ? yardimId : undefined}
+        className={`mt-2.5 ${GIRDI_SINIFI} ${hata ? "border-sea-700" : ""}`}
       />
-      {yardim ? (
+      {hata ? (
+        <p id={hataId} className="mt-2 text-small text-sea-900">
+          <span aria-hidden="true" className="mr-1.5 text-sea-700">
+            ↳
+          </span>
+          {hata}
+        </p>
+      ) : yardim ? (
         <p id={yardimId} className="mt-2 text-small text-muted">
           {yardim}
         </p>

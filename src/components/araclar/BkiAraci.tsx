@@ -3,9 +3,12 @@
 import { useId, useState } from "react";
 import {
   BKI_ARALIKLARI,
+  GIRDI_ARALIKLARI,
   bkiAraligi,
   bkiHesapla,
-  girdiyiSayiyaCevir,
+  gecerliDegerler,
+  girdiDogrula,
+  hataVarMi,
   sayiYaz,
 } from "@/lib/hesaplama";
 import {
@@ -20,7 +23,11 @@ export function BkiAraci() {
   const [kg, setKg] = useState("");
   const [boy, setBoy] = useState("");
 
-  const bki = bkiHesapla(girdiyiSayiyaCevir(kg), girdiyiSayiyaCevir(boy));
+  const kgSonuc = girdiDogrula(kg, GIRDI_ARALIKLARI.kg);
+  const boySonuc = girdiDogrula(boy, GIRDI_ARALIKLARI.boy);
+
+  const degerler = gecerliDegerler(kgSonuc, boySonuc);
+  const bki = degerler ? bkiHesapla(degerler[0]!, degerler[1]!) : null;
   const icindeOlduguAralik = bki !== null ? bkiAraligi(bki) : null;
 
   return (
@@ -36,8 +43,8 @@ export function BkiAraci() {
           birim="kg"
           deger={kg}
           onChange={setKg}
-          min={20}
-          max={400}
+          hata={kgSonuc.durum === "hata" ? kgSonuc.mesaj : undefined}
+          ornek="70"
         />
         <SayiAlani
           id={`${on}-boy`}
@@ -45,9 +52,9 @@ export function BkiAraci() {
           birim="cm"
           deger={boy}
           onChange={setBoy}
-          min={100}
-          max={250}
-          yardim="Ayakkabısız ölçülen boy."
+          hata={boySonuc.durum === "hata" ? boySonuc.mesaj : undefined}
+          ornek="177"
+          yardim="Ayakkabısız ölçülen boy, santimetre cinsinden (örnek: 177)."
         />
       </form>
 
@@ -55,7 +62,9 @@ export function BkiAraci() {
         <SonucKutusu>
           {bki === null ? (
             <BeklemeMetni>
-              Ağırlık ve boy girdiğinizde sonuç burada belirir.
+              {hataVarMi(kgSonuc, boySonuc)
+                ? "Sonuç için soldaki uyarıyı düzeltin."
+                : "Ağırlık ve boy girdiğinizde sonuç burada belirir."}
             </BeklemeMetni>
           ) : (
             <>

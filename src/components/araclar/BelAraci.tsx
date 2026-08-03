@@ -4,8 +4,10 @@ import { useId, useState } from "react";
 import {
   BEL_BOY_HEDEFI,
   BEL_ESIKLERI,
+  GIRDI_ARALIKLARI,
   belBoyOrani,
-  girdiyiSayiyaCevir,
+  girdiDogrula,
+  hataVarMi,
   sayiYaz,
   type Cinsiyet,
 } from "@/lib/hesaplama";
@@ -28,10 +30,15 @@ export function BelAraci() {
   const [bel, setBel] = useState("");
   const [boy, setBoy] = useState("");
 
-  const belSayi = girdiyiSayiyaCevir(bel);
-  const oran = belBoyOrani(belSayi, girdiyiSayiyaCevir(boy));
+  const belSonuc = girdiDogrula(bel, GIRDI_ARALIKLARI.bel);
+  const boySonuc = girdiDogrula(boy, GIRDI_ARALIKLARI.boy);
   const esik = BEL_ESIKLERI[cinsiyet];
-  const belGecerli = Number.isFinite(belSayi) && belSayi > 0;
+
+  const belSayi = belSonuc.durum === "gecerli" ? belSonuc.deger : null;
+  const oran =
+    belSayi !== null && boySonuc.durum === "gecerli"
+      ? belBoyOrani(belSayi, boySonuc.deger)
+      : null;
 
   return (
     <div className="grid gap-[clamp(28px,4vw,48px)] lg:grid-cols-2">
@@ -54,8 +61,8 @@ export function BelAraci() {
           birim="cm"
           deger={bel}
           onChange={setBel}
-          min={40}
-          max={200}
+          hata={belSonuc.durum === "hata" ? belSonuc.mesaj : undefined}
+          ornek="85"
           yardim="En alt kaburga ile kalça kemiği arasındaki orta noktadan, normal nefes verme sonunda ölçün. Mezura gergin ama deriyi sıkıştırmayan konumda olmalı."
         />
         <SayiAlani
@@ -64,16 +71,19 @@ export function BelAraci() {
           birim="cm"
           deger={boy}
           onChange={setBoy}
-          min={100}
-          max={250}
+          hata={boySonuc.durum === "hata" ? boySonuc.mesaj : undefined}
+          ornek="177"
+          yardim="Santimetre cinsinden (örnek: 177)."
         />
       </form>
 
       <div className="space-y-6">
         <SonucKutusu>
-          {!belGecerli ? (
+          {belSayi === null ? (
             <BeklemeMetni>
-              Bel çevresi ve boy girdiğinizde sonuç burada belirir.
+              {hataVarMi(belSonuc, boySonuc)
+                ? "Sonuç için soldaki uyarıyı düzeltin."
+                : "Bel çevresi ve boy girdiğinizde sonuç burada belirir."}
             </BeklemeMetni>
           ) : (
             <>
@@ -85,7 +95,7 @@ export function BelAraci() {
                 />
               ) : (
                 <BeklemeMetni>
-                  Oran için boy bilgisi de gerekiyor.
+                  Bel/boy oranı için boy bilgisi de gerekiyor.
                 </BeklemeMetni>
               )}
 

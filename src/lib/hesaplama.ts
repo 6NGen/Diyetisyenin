@@ -182,3 +182,73 @@ export function girdiyiSayiyaCevir(ham: string): number {
   if (temiz === "") return Number.NaN;
   return Number(temiz);
 }
+
+/* ------------------------------------------------------------------ *
+ * Girdi doğrulama
+ *
+ * Araçlar girilen sayıyı sorgusuz kabul ederse anlamsız sonuç üretir:
+ * boy alanına 1,77 yazan biri 255 kg/m² görür. Bu yüzden her alanın
+ * makul bir aralığı var ve aralık dışındaki değerle hesap YAPILMAZ.
+ * ------------------------------------------------------------------ */
+
+export type Aralik = { alt: number; ust: number; birim: string; ad: string };
+
+export const GIRDI_ARALIKLARI = {
+  kg: { alt: 20, ust: 400, birim: "kg", ad: "Ağırlık" },
+  boy: { alt: 100, ust: 250, birim: "cm", ad: "Boy" },
+  bel: { alt: 40, ust: 200, birim: "cm", ad: "Bel çevresi" },
+  yas: { alt: 18, ust: 100, birim: "yıl", ad: "Yaş" },
+} as const satisfies Record<string, Aralik>;
+
+export type GirdiSonucu =
+  | { durum: "bos" }
+  | { durum: "gecerli"; deger: number }
+  | { durum: "hata"; mesaj: string };
+
+export function girdiDogrula(ham: string, aralik: Aralik): GirdiSonucu {
+  if (ham.trim() === "") return { durum: "bos" };
+
+  const sayi = girdiyiSayiyaCevir(ham);
+  if (!Number.isFinite(sayi)) {
+    return { durum: "hata", mesaj: "Lütfen bir sayı girin." };
+  }
+  if (sayi <= 0) {
+    return { durum: "hata", mesaj: "Değer sıfırdan büyük olmalı." };
+  }
+
+  // En sık yapılan hata: santimetre istenen alana metre yazmak (1,77 gibi).
+  // Bu aralıkta bir insan ölçüsü santimetre cinsinden mümkün olmadığı için
+  // niyeti tahmin etmek yerine ne yazması gerektiğini söylüyoruz.
+  if (aralik.birim === "cm" && sayi < 3) {
+    return {
+      durum: "hata",
+      mesaj: `${aralik.ad} santimetre cinsinden girilir: ${sayiYaz(sayi, 2)} yerine ${tamSayiYaz(sayi * 100)} yazın.`,
+    };
+  }
+
+  if (sayi < aralik.alt || sayi > aralik.ust) {
+    return {
+      durum: "hata",
+      mesaj: `${aralik.ad} ${tamSayiYaz(aralik.alt)}–${tamSayiYaz(aralik.ust)} ${aralik.birim} aralığında olmalı.`,
+    };
+  }
+
+  return { durum: "gecerli", deger: sayi };
+}
+
+/** Girdilerden herhangi biri hatalıysa sonuç gösterilmez. */
+export function hataVarMi(...sonuclar: GirdiSonucu[]): boolean {
+  return sonuclar.some((s) => s.durum === "hata");
+}
+
+/** Tümü geçerliyse değerleri döndürür, değilse null. */
+export function gecerliDegerler(
+  ...sonuclar: GirdiSonucu[]
+): number[] | null {
+  const degerler: number[] = [];
+  for (const sonuc of sonuclar) {
+    if (sonuc.durum !== "gecerli") return null;
+    degerler.push(sonuc.deger);
+  }
+  return degerler;
+}
