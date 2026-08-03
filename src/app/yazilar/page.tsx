@@ -41,7 +41,7 @@ export default function YazilarSayfasi() {
                     <div>
                       <time
                         dateTime={yazi.date}
-                        className="block font-mono text-label tracking-[0.18em] text-sea-500 uppercase"
+                        className="block font-mono text-label tracking-[0.18em] text-sea-700 uppercase"
                       >
                         {tarihYaz(yazi.date)}
                       </time>

@@ -15,7 +15,7 @@ export function YontemAdimlari() {
           Beş adım, hep aynı sırada.
         </Baslik>
         <Lede className="mt-5">
-          Beslenme danışmanlığının uluslararası çerçevesi ADIME'dir:
+          Beslenme danışmanlığının uluslararası çerçevesi ADIME&apos;dir:
           değerlendirme, beslenme tanısı, müdahale, izlem ve değerlendirme.
           Sürecin her adımı yazılı, her hesabın kaynağı belli.
         </Lede>
@@ -28,7 +28,7 @@ export function YontemAdimlari() {
               gecikme={sira * 60}
               className="flex h-full flex-col px-[clamp(18px,2vw,24px)] py-[clamp(22px,2.6vw,30px)] transition-transform duration-200 hover:-translate-y-[3px]"
             >
-              <p className="font-mono text-label tracking-[0.18em] text-sea-500 uppercase">
+              <p className="font-mono text-label tracking-[0.18em] text-sea-700 uppercase">
                 {adim.no} · {adim.kod}
               </p>
               <h3 className="mt-3 font-display text-h3 font-medium text-sea-900">

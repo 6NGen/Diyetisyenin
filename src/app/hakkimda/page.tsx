@@ -138,7 +138,7 @@ export default function HakkimdaSayfasi() {
                 key={ilke.baslik}
                 className="bg-paper px-[clamp(20px,2.6vw,32px)] py-[clamp(24px,3vw,34px)]"
               >
-                <p className="font-mono text-label tracking-[0.18em] text-sea-500 uppercase">
+                <p className="font-mono text-label tracking-[0.18em] text-sea-700 uppercase">
                   {String(sira + 1).padStart(2, "0")}
                 </p>
                 <h3 className="mt-3 font-display text-h3 font-medium text-sea-900">

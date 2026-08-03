@@ -32,13 +32,15 @@ export function GuvenSeridi() {
     <section className="bg-white pb-[clamp(40px,6vw,72px)]">
       <div className="konteyner">
         <Reveal>
+          {/* Başlık seviyesi atlamasın diye görünmez ama okunabilir bir h2. */}
+          <h2 className="sr-only">Neden benimle çalışırsınız</h2>
           <ul className="izgara-cizgi grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             {HUCRELER.map((hucre) => (
               <li
                 key={hucre.kod}
                 className="bg-paper px-[clamp(18px,2.4vw,28px)] py-[clamp(22px,2.8vw,32px)]"
               >
-                <p className="font-mono text-label tracking-[0.18em] text-sea-500 uppercase">
+                <p className="font-mono text-label tracking-[0.18em] text-sea-700 uppercase">
                   {hucre.kod}
                 </p>
                 <h3 className="mt-3 font-display text-h3 font-medium text-sea-900">

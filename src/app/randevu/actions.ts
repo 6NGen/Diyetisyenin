@@ -5,12 +5,12 @@ import { createHash } from "node:crypto";
 import { headers } from "next/headers";
 import { sinirAsildiMi } from "@/lib/rateLimit";
 import { supabaseSunucu } from "@/lib/supabase";
+import { randevuSemasi } from "@/lib/schema";
 import {
   BASARI_MESAJI,
-  randevuSemasi,
   type AlanAdi,
   type FormDurumu,
-} from "@/lib/schema";
+} from "@/lib/randevu-tipleri";
 
 /** Ham IP saklanmaz; günlük tuz ile sha256 özeti tutulur. */
 function ipOzeti(ip: string): string {

@@ -8,7 +8,7 @@ export function PaketKarti({ paket }: { paket: Paket }) {
   return (
     <article className="flex h-full flex-col bg-paper px-[clamp(20px,2.4vw,28px)] py-[clamp(24px,2.8vw,32px)] transition-transform duration-200 hover:-translate-y-[3px]">
       <div className="flex items-start justify-between gap-3">
-        <p className="font-mono text-label tracking-[0.18em] text-sea-500 uppercase">
+        <p className="font-mono text-label tracking-[0.18em] text-sea-700 uppercase">
           {paket.kod}
         </p>
         {paket.oneCikan ? <Etiket ton="vurgu">Öne çıkan</Etiket> : null}

@@ -151,7 +151,9 @@ export default function IletisimSayfasi() {
                   <p className="font-mono text-label tracking-[0.18em] text-sea-700 uppercase">
                     Harita
                   </p>
-                  <p className="max-w-[42ch] text-small text-muted">
+                  {/* sea-50 zeminde --muted 4.64:1'de kalıyor; bu kutuda
+                      --ink kullanılarak pay bırakılıyor. */}
+                  <p className="max-w-[42ch] text-small text-ink">
                     Harita, <code className="font-mono">SITE.koordinat</code>{" "}
                     alanına gerçek enlem ve boylam girildiğinde burada
                     görünecek.

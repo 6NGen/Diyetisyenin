@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useActionState, useId } from "react";
 import { useFormStatus } from "react-dom";
 import { randevuGonder } from "@/app/randevu/actions";
-import { PAKET_SECENEKLERI, type FormDurumu } from "@/lib/schema";
+import { PAKET_SECENEKLERI, type FormDurumu } from "@/lib/randevu-tipleri";
 import { TELEFON_HREF, SITE, telefonGoster } from "@/content/site";
 
 const BASLANGIC: FormDurumu = { durum: "bos" };
@@ -34,8 +34,10 @@ function Hata({ id, mesaj }: { id: string; mesaj?: string }) {
   );
 }
 
+// outline-none KULLANILMAZ: globals.css'teki :focus-visible halkası
+// (2px sea-500) alanlarda da görünür kalmalı. Kenarlık rengi ona eşlik eder.
 const GIRDI_SINIFI =
-  "w-full border border-line bg-white px-4 py-3 text-ink outline-none transition-colors placeholder:text-muted/70 focus:border-sea-500";
+  "w-full border border-line bg-white px-4 py-3 text-ink transition-colors placeholder:text-muted/70 focus:border-sea-500";
 
 /**
  * Randevu formu. Sağlık verisi TOPLAMAZ:

@@ -28,6 +28,8 @@ export default function PaketlerSayfasi() {
       />
 
       <Section zemin="tint">
+        {/* Kart başlıkları h3; seviye atlamasın diye görünmez bir h2. */}
+        <h2 className="sr-only">Danışmanlık paketleri</h2>
         <PaketIzgarasi />
       </Section>
 

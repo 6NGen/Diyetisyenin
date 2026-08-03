@@ -11,10 +11,6 @@ export function Header() {
   const menuId = useId();
 
   useEffect(() => {
-    setAcik(false);
-  }, [yol]);
-
-  useEffect(() => {
     if (!acik) return;
     const kapat = (olay: KeyboardEvent) => {
       if (olay.key === "Escape") setAcik(false);
@@ -99,6 +95,7 @@ export function Header() {
               <Link
                 key={oge.href}
                 href={oge.href}
+                onClick={() => setAcik(false)}
                 className="border-b border-line py-3.5 font-mono text-label tracking-[0.18em] text-ink uppercase last:border-b-0"
               >
                 {oge.ad}
@@ -106,6 +103,7 @@ export function Header() {
             ))}
             <Link
               href="/randevu"
+              onClick={() => setAcik(false)}
               className="mt-3 mb-2 bg-sea-700 px-4 py-3.5 text-center font-mono text-label tracking-[0.18em] text-white uppercase"
             >
               Ücretsiz ön görüşme

@@ -50,7 +50,7 @@ export function YasalSayfa({
             {bolumler.map((bolum, sira) => (
               <li key={bolum.baslik} className="!pl-0">
                 <h2 id={`bolum-${sira + 1}`}>
-                  <span className="mr-3 font-mono text-label tracking-[0.18em] text-sea-500 uppercase">
+                  <span className="mr-3 font-mono text-label tracking-[0.18em] text-sea-700 uppercase">
                     {String(sira + 1).padStart(2, "0")}
                   </span>
                   {bolum.baslik}

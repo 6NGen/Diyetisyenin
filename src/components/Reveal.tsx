@@ -26,13 +26,12 @@ export function Reveal({
     const eleman = ref.current;
     if (!eleman) return;
 
-    const azHareket = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (azHareket || typeof IntersectionObserver === "undefined") {
-      setGorundu(true);
-      return;
+    // prefers-reduced-motion burada kontrol edilmez; globals.css içindeki
+    // @media (prefers-reduced-motion: no-preference) kuralı zaten gizlemeyi
+    // yalnızca hareket istenen durumda uygular.
+    if (typeof IntersectionObserver === "undefined") {
+      const kare = requestAnimationFrame(() => setGorundu(true));
+      return () => cancelAnimationFrame(kare);
     }
 
     const gozlemci = new IntersectionObserver(

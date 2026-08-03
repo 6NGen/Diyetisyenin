@@ -54,7 +54,7 @@ export function PaketKarsilastirma() {
                   paket.oneCikan ? "bg-sea-50" : "bg-white"
                 }`}
               >
-                <span className="block font-mono text-label tracking-[0.18em] text-sea-500 uppercase">
+                <span className="block font-mono text-label tracking-[0.18em] text-sea-700 uppercase">
                   {paket.kod}
                 </span>
                 <span className="mt-1.5 block font-display text-[20px] leading-tight font-medium text-sea-900">

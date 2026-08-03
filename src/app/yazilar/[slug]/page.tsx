@@ -8,7 +8,6 @@ import { Etiket } from "@/components/ui/Etiket";
 import { YASAL_IBARE } from "@/content/site";
 import { articleJsonLd, breadcrumbJsonLd } from "@/lib/jsonld";
 import { tarihYaz, tumYazilar, yaziBul } from "@/lib/yazilar";
-import { useMDXComponents } from "@/mdx-components";
 
 export const dynamic = "force-static";
 export const dynamicParams = false;
@@ -49,8 +48,8 @@ export default async function YaziDetay({
   const yazi = yaziBul(slug);
   if (!yazi) notFound();
 
+  // Bileşen eşlemesi src/mdx-components.tsx dosya sözleşmesiyle otomatik uygulanır.
   const { default: Govde } = await import(`@/content/yazilar/${slug}.mdx`);
-  const bilesenler = useMDXComponents();
 
   const digerYazilar = tumYazilar()
     .filter((diger) => diger.slug !== slug)
@@ -125,7 +124,7 @@ export default async function YaziDetay({
 
         <div className="konteyner bolum-bosluk">
           <div className="metin">
-            <Govde components={bilesenler} />
+            <Govde />
           </div>
 
           <p className="metin mt-12 border-t border-line pt-6 text-small text-muted">
@@ -148,7 +147,7 @@ export default async function YaziDetay({
                     href={`/yazilar/${diger.slug}`}
                     className="flex h-full flex-col px-[clamp(20px,2.4vw,28px)] py-[clamp(22px,2.6vw,30px)] transition-transform duration-200 hover:-translate-y-[3px]"
                   >
-                    <span className="font-mono text-label tracking-[0.18em] text-sea-500 uppercase">
+                    <span className="font-mono text-label tracking-[0.18em] text-sea-700 uppercase">
                       {tarihYaz(diger.date)}
                     </span>
                     <span className="mt-3 font-display text-h3 font-medium text-sea-900">

@@ -33,7 +33,7 @@ export default function YontemSayfasi() {
                 gecikme={sira * 50}
                 className="flex h-full flex-col px-[clamp(20px,2.4vw,28px)] py-[clamp(24px,2.8vw,32px)]"
               >
-                <p className="font-mono text-label tracking-[0.18em] text-sea-500 uppercase">
+                <p className="font-mono text-label tracking-[0.18em] text-sea-700 uppercase">
                   {adim.no} · {adim.kod}
                 </p>
                 <h2 className="mt-3 font-display text-h3 font-medium text-sea-900">
@@ -79,7 +79,7 @@ export default function YontemSayfasi() {
             <Reveal key={blok.kod} gecikme={sira * 40}>
               <article className="border border-line bg-paper">
                 <header className="border-b border-line px-[clamp(20px,2.6vw,32px)] py-[clamp(20px,2.4vw,28px)]">
-                  <p className="font-mono text-label tracking-[0.18em] text-sea-500 uppercase">
+                  <p className="font-mono text-label tracking-[0.18em] text-sea-700 uppercase">
                     Blok {blok.kod}
                   </p>
                   <h3 className="mt-3 font-display text-[clamp(22px,2.6vw,28px)] leading-tight font-medium text-sea-900">
@@ -96,19 +96,29 @@ export default function YontemSayfasi() {
                       key={satir.ad}
                       className="grid gap-2 border-b border-line px-[clamp(20px,2.6vw,32px)] py-[clamp(18px,2.2vw,26px)] last:border-b-0 md:grid-cols-[minmax(180px,0.9fr)_2fr] md:gap-8"
                     >
-                      <dt className="font-display text-[18px] leading-snug font-medium text-sea-900">
+                      {/* min-w-0: ızgara hücrelerinin varsayılan min-width:auto
+                          değeri, taşmayan formül kutusunun 320px'te sayfayı
+                          yatay kaydırmasına yol açıyordu. */}
+                      <dt className="min-w-0 font-display text-[18px] leading-snug font-medium text-sea-900">
                         {satir.ad}
                       </dt>
-                      <dd>
+                      <dd className="min-w-0">
                         <p className="max-w-[64ch] text-small text-ink">
                           {satir.aciklama}
                         </p>
                         {satir.formul ? (
-                          <p className="mt-3 overflow-x-auto border border-line bg-sea-50 px-3 py-2.5">
+                          // Dar ekranda yatay kayan bölge; klavye ile de
+                          // kaydırılabilmesi için odaklanabilir.
+                          <div
+                            tabIndex={0}
+                            role="region"
+                            aria-label={`${satir.ad} formülü`}
+                            className="mt-3 overflow-x-auto border border-line bg-sea-50 px-3 py-2.5"
+                          >
                             <code className="font-mono text-[13px] whitespace-nowrap text-sea-900">
                               {satir.formul}
                             </code>
-                          </p>
+                          </div>
                         ) : null}
                       </dd>
                     </div>
@@ -135,7 +145,7 @@ export default function YontemSayfasi() {
                 key={kaynak.kunye}
                 className="grid gap-2 border-b border-line py-5 md:grid-cols-[48px_1fr] md:gap-6"
               >
-                <span className="font-mono text-label tracking-[0.18em] text-sea-500 uppercase">
+                <span className="font-mono text-label tracking-[0.18em] text-sea-700 uppercase">
                   {String(sira + 1).padStart(2, "0")}
                 </span>
                 <div>

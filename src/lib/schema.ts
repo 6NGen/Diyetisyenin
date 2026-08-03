@@ -1,15 +1,14 @@
+import "server-only";
 import { z } from "zod";
-import { PAKETLER } from "@/content/paketler";
+import { GECERLI_PAKETLER } from "@/lib/randevu-tipleri";
 
-export const PAKET_SECENEKLERI = [
-  { deger: "emin-degilim", etiket: "Emin değilim" },
-  ...PAKETLER.map((paket) => ({
-    deger: paket.slug,
-    etiket: `${paket.ad} — ${paket.kod}`,
-  })),
-] as const;
-
-const GECERLI_PAKETLER = PAKET_SECENEKLERI.map((secenek) => secenek.deger);
+/**
+ * Sunucu tarafı doğrulama şeması.
+ *
+ * `server-only` importu kasıtlı: bu modül bir istemci bileşeninden import
+ * edilirse derleme hata verir ve zod istemci paketine sızmaz. İstemcinin
+ * ihtiyacı olan tip ve sabitler `lib/randevu-tipleri.ts` içindedir.
+ */
 
 /**
  * Türkiye cep telefonu numarasını +90XXXXXXXXXX biçimine getirir.
@@ -69,7 +68,7 @@ export const randevuSemasi = z.object({
     .string()
     .trim()
     .refine(
-      (deger) => GECERLI_PAKETLER.includes(deger as (typeof GECERLI_PAKETLER)[number]),
+      (deger) => GECERLI_PAKETLER.includes(deger),
       "Listedeki paketlerden birini seçin.",
     ),
 
@@ -88,19 +87,3 @@ export const randevuSemasi = z.object({
 });
 
 export type RandevuGirdisi = z.infer<typeof randevuSemasi>;
-
-export type AlanAdi = "adSoyad" | "telefon" | "eposta" | "paket" | "not" | "kvkkOnay";
-
-export type FormDurumu =
-  | { durum: "bos" }
-  | {
-      durum: "hata";
-      genelMesaj?: string;
-      alanHatalari?: Partial<Record<AlanAdi, string>>;
-      /** Kullanıcının yazdıklarını kaybetmemek için geri gönderilir. */
-      degerler?: Partial<Record<AlanAdi, string>>;
-    }
-  | { durum: "basarili"; mesaj: string };
-
-export const BASARI_MESAJI =
-  "Talebiniz ulaştı. 1 iş günü içinde arayacağım.";

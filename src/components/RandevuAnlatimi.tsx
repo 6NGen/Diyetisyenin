@@ -75,7 +75,7 @@ export function RandevuAnlatimi() {
           "Devam etmek isterseniz ilk randevunuzu planlarız.",
         ].map((adim, sira) => (
           <li key={adim} className="flex gap-4">
-            <span className="mt-0.5 shrink-0 font-mono text-label tracking-[0.18em] text-sea-500 uppercase">
+            <span className="mt-0.5 shrink-0 font-mono text-label tracking-[0.18em] text-sea-700 uppercase">
               {String(sira + 1).padStart(2, "0")}
             </span>
             <span className="text-small text-ink">{adim}</span>

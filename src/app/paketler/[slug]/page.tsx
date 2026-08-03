@@ -173,7 +173,7 @@ export default async function PaketDetay({
                   href={`/paketler/${diger.slug}`}
                   className="flex h-full flex-col px-[clamp(20px,2.4vw,28px)] py-[clamp(22px,2.6vw,30px)] transition-transform duration-200 hover:-translate-y-[3px]"
                 >
-                  <span className="font-mono text-label tracking-[0.18em] text-sea-500 uppercase">
+                  <span className="font-mono text-label tracking-[0.18em] text-sea-700 uppercase">
                     {diger.kod}
                   </span>
                   <span className="mt-3 font-display text-h3 font-medium text-sea-900">
