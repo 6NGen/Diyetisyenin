@@ -60,9 +60,34 @@ export function telefonGoster(numara: string): string {
   return `+${r.slice(0, 2)} ${r.slice(2, 5)} ${r.slice(5, 8)} ${r.slice(8, 10)} ${r.slice(10, 12)}`;
 }
 
-export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
-).replace(/\/$/, "");
+/**
+ * Sitenin kanonik adresi. sitemap, robots, canonical etiketleri, Open Graph ve
+ * JSON-LD'nin tamamı buradan türer — yanlış olursa site arama motorlarına
+ * yanlış adres bildirir.
+ *
+ * Sıra önemli:
+ * 1. NEXT_PUBLIC_SITE_URL — açıkça verilen adres her zaman kazanır. Özel alan
+ *    adına geçildiğinde yalnızca bu değişken güncellenir.
+ * 2. VERCEL_PROJECT_PRODUCTION_URL — projenin üretim alan adı. Değişken hiç
+ *    girilmemişse bile canlı site localhost demez. Preview dağıtımlarında da
+ *    bu gelir; kanonik adresin üretimi göstermesi zaten doğrudur.
+ * 3. VERCEL_URL — dağıtıma özel adres, son çare.
+ * 4. localhost — yalnızca yerel geliştirme.
+ */
+function siteAdresiniBul(): string {
+  const acik = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (acik) return acik.replace(/\/+$/, "");
+
+  const uretim = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
+  if (uretim) return `https://${uretim.replace(/\/+$/, "")}`;
+
+  const dagitim = process.env.VERCEL_URL?.trim();
+  if (dagitim) return `https://${dagitim.replace(/\/+$/, "")}`;
+
+  return "http://localhost:3000";
+}
+
+export const SITE_URL = siteAdresiniBul();
 
 export type MenuOgesi = { ad: string; href: string };
 
